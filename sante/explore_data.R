@@ -5,158 +5,88 @@ library(Hmisc)
 library(ggplot2)
 
 ##################################################################################
-######################### Donnees "medicaments centrees" #########################
-##################################################################################
-
-setwd("/Users/emiliecupillard/Documents/ENSAE/ENSAE\ 3A/Dataviz/Médicaments")
-
-data <- read.csv2("OPEN_MEDIC_2016.CSV", header = TRUE, encoding = "latin1")
-#base qui se trouve sur https://www.data.gouv.fr/fr/datasets/open-medic-base-complete-sur-les-depenses-de-medicaments-interregimes/
-#on peut avoir ces donnees pour 2014 et 2015 aussi
-#slmt medicament delivre en pharmacie de ville, et rembourse par assu maladie
-#Une observation = 
-#une combinaison medicament-sexe beneficiaire-age beneficiaire-type de prescripteur-region de residence du beneficiaire
-
-summary.default(data)
-#1.799.650 observations
-head(data)
-
-#ATC1 = Goupe Principal Anatomique
-head(data$CIP13)
-
-##################################################################################
 ######################### Donnees "prestations centrees" #########################
 ##################################################################################
 
-####################### Exploration au niv dpartemental ##########################
+############################ Niveau national mensuel #############################
 
-setwd("/Users/emiliecupillard/Documents/ENSAE/ENSAE\ 3A/Dataviz/Médicaments/R2016")
-data_prs <- read.csv2("R201601.CSV", header = TRUE, encoding = "latin1")
-#base qui se trouve sur : https://www.data.gouv.fr/fr/datasets/depenses-d-assurance-maladie-hors-prestations-hospitalieres-par-caisse-primaire-departement/
-#cette base = ensemble des prestations de sante des francais remboursees par l'assu maladie
-#pour janvier 2016
-#agrege au niv du departement et type de prestation
+#Source donnees:
+#https://www.data.gouv.fr/fr/datasets/depenses-d-assurance-maladie-hors-prestations-hospitalieres-donnees-nationales/
 
-summary.default(data_prs)
-
-#variable qui nous donne les specialites des executants (gyneco, ophtalmo...):
-levels(data_prs$l_exe_spe)
-#variable montant des depassements d'honoraires :
-describe(data_prs$dep_mon)
-#variable departement:
-levels(data_prs$dpt)
-
-#objectif: sortir un tableau avec les depassements d'honoraires par departement pour jan 2016
-
-#etude de la variable dep_mon : pas de missing mais on a des valeurs aberrantes
-
-#on remplace les valeurs negatives par 0
-data_prs$dep_mon2 <- as.character(data_prs$dep_mon)
-data_prs$dep_mon2 <- substr(data_prs$dep_mon2, 1,nchar(data_prs$dep_mon2)-3)
-data_prs$dep_mon2 <- as.numeric(data_prs$dep_mon2)
-
-data_prs$dep_mon2 <- ifelse(data_prs$dep_mon2 < 0, 0, data_prs$dep_mon2)
-describe(data_prs$dep_mon2)
-
-#traitement des valeurs trop hautes pour etre pertinentes
-data_prs$dep_mon3 <- ifelse(data_prs$dep_mon2 == 0, NA, data_prs$dep_mon2)
-quantile(data_prs$dep_mon3, 0.75, na.rm = TRUE)
-Fn <- ecdf(data_prs$dep_mon3)
-plot(Fn, lwd = 2) 
-#je ne suis pas capable de dire, au niv agrege, quelles valeurs apparaissent aberrantes ou non
-
-#si on se concentre sur les gyneco:
-df_gyn <-  data_prs[data_prs$l_exe_spe == "07-TOTAL Gynécologie", ]
-Fn_gyn <- ecdf(df_gyn$dep_mon3)
-plot(Fn_gyn, lwd = 2)
-
-quantile(df_gyn$dep_mon3, 0.90, na.rm = TRUE)
-#ca vaut 300
-
-#-> se renseigner + pour voir a quel point cest plausible
-
-####################### Exploration au niv national ##########################
-
+#working directory
 setwd("/Users/emiliecupillard/Documents/ENSAE/ENSAE\ 3A/Dataviz/Médicaments/Prestations/Non\ hosp/National\ -\ dispo\ 2014-17")
-data_prs <- read.csv2("N201801.csv", header = TRUE, encoding = "latin1")
 
-#modalites de la var "l_serie" qui est une var codee par l'Assu maladie
-#pour etablir ses series stat et qui est obtenue par croisement entre la specialite
-#de l'executant de la prestation et la nature de la prestation
+#chargement des donnees pour janvier 2018
+d_1801 <- read.csv2("N201801.csv", header = TRUE, encoding = "latin1")
 
-levels(data_prs$l_serie)
-length(levels(data_prs$l_serie)) #173
-length(levels(data_prs[data_prs$l_serie == "C Omnipraticiens", ]$l_prs_nat)) #434
+# ---------------------------- Focus psychiatres ------------------------------- #
 
-#geriatre ? cf http://www.lemonde.fr/les-decodeurs/article/2017/11/29/depassements-d-honoraires-quelles-specialites-medicales-et-chirurgicales-sont-les-plus-concernees_5222160_4355770.html
-levels(data_prs$l_exe_spe)
+#examen des modalites de la var "specialite de l'executant"
+levels(d_1801$l_exe_spe)
 
-# -------------------- Focus gyneco -------------------- #
-  
-length(data_prs[data_prs$l_exe_spe == "07-Gynécologie obstétrique" | data_prs$l_exe_spe == "70-Gynécologie médicale" | data_prs$l_exe_spe == "79-Gynécologie obstétricale",1])
-#8113
-data_gyn <- data_prs[data_prs$l_exe_spe == "07-Gynécologie obstétrique" | data_prs$l_exe_spe == "70-Gynécologie médicale" | data_prs$l_exe_spe == "79-Gynécologie obstétricale",]
+#creation base psychiatres
+d_1801_psy <- d_1801[d_1801$l_exe_spe == "17-Neuropsychiatrie" |d_1801$l_exe_spe == "33-Psychiatrie générale" | d_1801$l_exe_spe == "75-Psychiatrie de l\"enfant et de l\"adolescent",]
+#NB "32-Neurologie" exclue
 
-length(unique(subset(data_gyn, select = - c(rem_mon, rec_mon, dep_mon)))[,1])
-# donc ok, pas de duplicats
+#verification pas de duplicats des n-uplets type prestation - statut de l'executant etc
+length(unique(subset(d_1801_psy, select = - c(rem_mon, rec_mon, dep_mon)))[,1])
+#ok, pas de duplicats
 
-#sur quelles prestations se focaliser, pour les gyneco, pour montrer 
-#les montants de depassemnts d'honoraires ?
+#mise en forme des variables bases de remboursement et depassements honoraires
+d_1801_psy$rec_mon2 <- as.character(d_1801_psy$rec_mon)
+d_1801_psy$rec_mon2 <- substr(d_1801_psy$rec_mon2, 1, nchar(d_1801_psy$rec_mon2)-3)
+d_1801_psy$rec_mon2 <- gsub("[^0123456789]", "", d_1801_psy$rec_mon2)
+d_1801_psy$rec_mon2 <- as.numeric(d_1801_psy$rec_mon2)
+#transformation en positif des chiffres inscrits en negatif
 
-#nettoyage var bases de remboursement et depassements honoraires
-data_gyn$rec_mon2 <- as.character(data_gyn$rec_mon)
-data_gyn$rec_mon2 <- substr(data_gyn$rec_mon2, 1,nchar(data_gyn$rec_mon2)-3)
-data_gyn$rec_mon2 <- as.numeric(data_gyn$rec_mon)
+d_1801_psy$dep_mon2 <- as.character(d_1801_psy$dep_mon)
+d_1801_psy$dep_mon2 <- substr(d_1801_psy$dep_mon2, 1, nchar(d_1801_psy$dep_mon2)-3)
+d_1801_psy$dep_mon2 <- gsub("[^0123456789]", "", d_1801_psy$dep_mon2)
+d_1801_psy$dep_mon2 <- as.numeric(d_1801_psy$dep_mon2)
 
-data_gyn$dep_mon2 <- as.character(data_gyn$dep_mon)
-data_gyn$dep_mon2 <- substr(data_gyn$dep_mon2, 1,nchar(data_gyn$dep_mon2)-3)
-data_gyn$dep_mon2 <- as.numeric(data_gyn$dep_mon)
+#liste des valeurs (integer) prises par prs_nat (type de prestation)
+list <- levels(as.factor(d_1801_psy$prs_nat))
+list <- as.integer(list)
 
-#somme des bases de remboursements et des depassements par prestations
-str(data_gyn$prs_nat)
-
-list <- levels(as.factor(data_gyn$prs_nat))
-list2 <- as.integer(list)
-
-data_gyn$depsum_prs <- NA
-for(i in list2) {
-  data_gyn[data_gyn$prs_nat==i,]$depsum_prs <- sum(data_gyn[data_gyn$prs_nat==i,]$dep_mon2)
+#somme des bases de remboursement par type de prestation
+d_1801_psy$rec_sumprs <- NA
+for(i in list) {
+  d_1801_psy[d_1801_psy$prs_nat==i,]$rec_sumprs <- sum(d_1801_psy[d_1801_psy$prs_nat==i,]$rec_mon2)
 }
 
-data_gyn$recsum_prs <- NA
-for(i in list2) {
-  data_gyn[data_gyn$prs_nat==i,]$recsum_prs <- sum(data_gyn[data_gyn$prs_nat==i,]$rec_mon2)
+#somme des depassements d'honoraires par type de prestation
+d_1801_psy$dep_sumprs <- NA
+for(i in list) {
+  d_1801_psy[d_1801_psy$prs_nat==i,]$dep_sumprs <- sum(d_1801_psy[d_1801_psy$prs_nat==i,]$dep_mon2)
 }
 
 #calcul des taux de depassement par type de prestation
+d_1801_psy$txdep_prs <- (d_1801_psy$dep_sumprs/d_1801_psy$rec_sumprs)*100
 
-data_gyn$txdep_prs <- (data_gyn$depsum_prs/data_gyn$recsum_prs)*100
+#quels types de prestations ont les plus hauts taux de depassement ?
+txdep_prs <- aggregate(d_1801_psy$txdep_prs, list(d_1801_psy$l_prs_nat, d_1801_psy$prs_nat), mean)
+max(txdep_prs[!is.na(txdep_prs[,3]), 3]) #10527.27 -> valeur aberrante
+txdep_prs[txdep_prs[, 3] == max(txdep_prs[!is.na(txdep_prs[,3]), 3]), ]
+#la valeur aberrrante concerne la prestation 1331 = "actes de radiologie"
+#denombrement de ce type de prestation pour jan 2018 : 9.
 
-barplot(data_gyn$txdep_prs)
+#on supprime la prestation "actes de radiologie" de nos analyses :
+txdep_prs <- txdep_prs[txdep_prs$Group.2 != 1331 & txdep_prs$x > 0, ]
+txdep_prs <- txdep_prs[!is.na(txdep_prs$x),]
+
+#plot des taux de depassement par prestations
+ggplot(txdep_prs, aes(x=reorder(txdep_prs$Group.1, txdep_prs$x), y=txdep_prs$x)) +
+  geom_bar(stat='identity') +
+  coord_flip() +
+  xlab("Taux de dépassement des honoraires") +
+  ylab("Type de prestation") +
+  ggtitle("Taux de depassement par type de prestation")
+
+#regarder le DENOMBREMENT des prestations ? variable act_dnb 
+#(attention, cette var n'est pas dispo pour tous les types de prestation)
+View(d_1801_psy[d_1801_psy$l_prs_nat == "ACTE DE RADIOLOGIE MAMMOGRAPHIE", ]$act_dnb)View(d_1801_psy[d_1801_psy$l_prs_nat == "ACTE DE RADIOLOGIE MAMMOGRAPHIE", ])
+#4 occurrences de "ACTE DE RADIOLOGIE MAMMOGRAPHIE" sur janvier 2008
 
 
 
-length(levels(data_gyn$l_prs_nat)) #434
-length(levels(data_gyn$l_serie)) #173
-
-str(data_gyn)
-
-#histogramme par prestations ? 
-#on aimerait que le + de prestations possibles aient un denombrement..
-data_gyn$act_dnb2 <- as.numeric(as.character(data_gyn$act_dnb))
-
-#on met en positif les occurrences negatives ?
-data_gyn$act_dnb2 <- ifelse(data_gyn$act_dnb2 < 0, -data_gyn$act_dnb2, data_gyn$act_dnb2) 
-min(data_gyn$act_dnb2)
-
-length(levels(data_gyn[data_gyn$act_dnb2==0,]$l_prs_nat))
-length(levels(data_gyn$l_prs_nat))
-
-
-
-
-
-#"34-Gériatrie" 
-length(data_prs[data_prs$l_exe_spe == "34-Gériatrie",1])
-#710
 
