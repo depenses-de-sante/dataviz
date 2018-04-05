@@ -52,5 +52,7 @@ On passe aux "prestations", et non plus aux médicaments :
     * Pb de la mise en regard avec les montants remboursés: il peut être difficile de lire deux cartes à la fois
     * Chercher les tips pour faire tenir plusieurs infos sur une même carte
     * Q° : Taux de dépassement ou montant de dépassement ?
+
+
 => Il faut améliorer les viz (j’ai surtout pensé en termes de "barchart" pour l’instant), et je pense que la mise en œuvre peut être reloue pour certains graphes (ex le 1er : comment choisir les «tranches» de prix unitaires ?)
 
