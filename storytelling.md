@@ -56,3 +56,5 @@ On passe aux "prestations", et non plus aux médicaments :
 
 => Il faut améliorer les viz (j’ai surtout pensé en termes de "barchart" pour l’instant), et je pense que la mise en œuvre peut être reloue pour certains graphes (ex le 1er : comment choisir les «tranches» de prix unitaires ?)
 
+Idée en plus : Si à un moment on décide de faire un focus sur les médicaments très chers, on pourrait éventuellement donner leur prix en nombre de quelque chose de plus parlant (par exemple en années de SMIC, ou quelque chose de plus visuel - ça serait mieux).
+
