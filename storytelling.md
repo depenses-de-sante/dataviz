@@ -35,8 +35,10 @@ Attention, champ de l’étude : a priori seulement les dépenses "de ville" : m
         * En donnant la répartition des différents "groupes de médicaments" dans cette tranche ?
         * En donnant les noms des 10 premiers médicaments dans le groupe ?  
     * Idem pour les rectangles du graphe p/ consommants
+    
 **Ces viz seront, dans l'esprit proches des viz du Monde qui sont sur l'article Open Medic dans l'Excel.**
 On passe aux "prestations", et non plus aux médicaments : 
+
 * Montants dépensés / remboursés par spécialité, en mettant la part des dépassements d’honoraires dans les montants dépensés. Et en classant les spécialités par taux moyen de remboursement
     * Plot en valeur absolue sur une année donnée
     * Décomposer les montants dépensés en : dépassements d'honoraires, montants non-remboursés mais hors dépassements d'honoraire, montant remboursé
