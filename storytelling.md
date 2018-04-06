@@ -17,7 +17,7 @@ Idée qu’on dit souvent que ce qui fait en fait le gros des dépenses de sant�
 
 Attention, champ de l’étude : a priori seulement les dépenses "de ville" : médicaments achetés en pharmacie et visites "classiques" chez des médecins (pas hôpital)
 
-**Les graphes : voir pages scannées dégueu ci-après (désolée…) :**
+**Les graphes :**
 1. Montants dépensés et remboursés en fonction du prix unitaires des médicaments, par tranches de prix unitaires :
     * Bar chart, en décomposant la dépense en deux composantes: montant remboursé vs. montant non-remboursé
     * En abscisse des tranches de prix du médicament "au départ" ie. base de remboursement à l'unité
