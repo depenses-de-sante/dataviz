@@ -7,6 +7,22 @@ library(ggplot2)
 library(base)
 
 ##################################################################################
+######################### Donnees "medicament centrees" #########################
+##################################################################################
+
+setwd("/Users/emiliecupillard/Documents/ENSAE/ENSAE\ 3A/Dataviz/Médicaments/Medic")
+
+df <- read.csv2("OPEN_MEDIC_2016.csv", header = TRUE, encoding = "latin1")
+
+describe(df$L_CIP13)
+describe(df$CIP13)
+
+print(df[1,]$CIP13, digits = 20)
+
+length(unique(df$CIP13))
+length(unique(df$L_CIP13))
+
+##################################################################################
 ######################### Donnees "prestations centrees" #########################
 ##################################################################################
 
@@ -32,6 +48,136 @@ data2017 <- df_1
 for (i in 2:12) {
   data2017 <- rbind(data2017, get(paste("df", i, sep = "_")))
 }
+
+# --------- Plot des dépassements / remboursements / dépenses par spécialités -------------- #
+
+#### nb de specialites differentes des executants ############################################
+length(levels(data2017$l_exe_spe1)) #12
+
+#### mise en forme des variables de montants depenses ########################################
+
+#bases de remboursement
+data2017$rec_mon2 <- as.character(data2017$rec_mon)
+data2017$rec_mon2 <- substr(data2017$rec_mon2, 1, nchar(data2017$rec_mon2)-3)
+data2017$rec_mon2 <- gsub("[^0123456789]", "", data2017$rec_mon2)
+data2017$rec_mon2 <- as.numeric(data2017$rec_mon2)
+#on a transforme en positif les chiffres inscrits en negatif
+
+#depassements d'honoraires
+data2017$dep_mon2 <- as.character(data2017$dep_mon)
+data2017$dep_mon2 <- substr(data2017$dep_mon2, 1, nchar(data2017$dep_mon2)-3)
+data2017$dep_mon2 <- gsub("[^0123456789]", "", data2017$dep_mon2)
+data2017$dep_mon2 <- as.numeric(data2017$dep_mon2)
+
+#montant rembourse
+data2017$rem_mon2 <- as.character(data2017$rem_mon)
+data2017$rem_mon2 <- substr(data2017$rem_mon2, 1, nchar(data2017$rem_mon2)-3)
+data2017$rem_mon2 <- gsub("[^0123456789]", "", data2017$rem_mon2)
+data2017$rem_mon2 <- as.numeric(data2017$rem_mon2)
+
+#reste a charge hors depassements
+data2017$reste <- data2017$rec_mon2 - data2017$rem_mon2
+
+#### creation des variables remboursements/restes a charge/depassements par specialite ########
+
+#liste des valeurs (integer) prises par exe_spe (liste des specialites)
+list <- levels(as.factor(data2017$exe_spe1))
+list <- as.integer(list) #length(list) = 12
+
+#somme des montants rembourses par specialite (exe_spe1)
+data2017$rem_sumspe <- NA
+for(i in list) {
+  data2017[data2017$exe_spe1==i,]$rem_sumspe <- sum(data2017[data2017$exe_spe1==i,]$rem_mon2)
+}
+
+#somme des restes a charge par specialite (exe_spe1)
+data2017$reste_sumspe <- NA
+for(i in list) {
+  data2017[data2017$exe_spe1==i,]$reste_sumspe <- sum(data2017[data2017$exe_spe1==i,]$reste)
+}
+
+#somme des depassements d'honoraires par specialite (exe_spe1)
+data2017$dep_sumspe <- NA
+for(i in list) {
+  data2017[data2017$exe_spe1==i,]$dep_sumspe <- sum(data2017[data2017$exe_spe1==i,]$dep_mon2)
+}
+
+#### mise en forme des donnees pour le plot #############################################
+
+rem_sumspe <- aggregate(data2017$rem_sumspe, list(data2017$l_exe_spe1, data2017$exe_spe1), mean)
+reste_sumspe <- aggregate(data2017$reste_sumspe, list(data2017$l_exe_spe1, data2017$exe_spe1), mean)
+dep_sumspe <- aggregate(data2017$dep_sumspe, list(data2017$l_exe_spe1, data2017$exe_spe1), mean)
+
+tot <- rbind()
+
+
+
+
+
+
+
+
+
+# ------- Plot des taux de dépassements en fonction des taux de remboursement --------- #
+
+#### mise en forme des variables bases de remboursement et depassements honoraires ####
+
+data2017$rec_mon2 <- as.character(data2017$rec_mon)
+data2017$rec_mon2 <- substr(data2017$rec_mon2, 1, nchar(data2017$rec_mon2)-3)
+data2017$rec_mon2 <- gsub("[^0123456789]", "", data2017$rec_mon2)
+data2017$rec_mon2 <- as.numeric(data2017$rec_mon2)
+#on a transforme en positif les chiffres inscrits en negatif
+
+data2017$dep_mon2 <- as.character(data2017$dep_mon)
+data2017$dep_mon2 <- substr(data2017$dep_mon2, 1, nchar(data2017$dep_mon2)-3)
+data2017$dep_mon2 <- gsub("[^0123456789]", "", data2017$dep_mon2)
+data2017$dep_mon2 <- as.numeric(data2017$dep_mon2)
+
+#### creation de la variable taux de depassement par taux de remboursement ####
+
+#liste des valeurs (integer) prises par REM_TAU (taux de remboursement)
+list <- levels(as.factor(data2017$REM_TAU))
+list <- as.integer(list)
+
+#somme des bases de remboursement par taux de remboursement
+data2017$rec_sumtx <- NA
+for(i in list) {
+  data2017[data2017$REM_TAU==i,]$rec_sumtx <- sum(data2017[data2017$REM_TAU==i,]$rec_mon2)
+}
+
+#somme des depassements d'honoraires par type de prestation
+data2017$dep_sumtx <- NA
+for(i in list) {
+  data2017[data2017$REM_TAU==i,]$dep_sumtx <- sum(data2017[data2017$REM_TAU==i,]$dep_mon2)
+}
+
+#creation de la variable taux de depassement par taux de remboursement
+data2017$txdep_tx <- (data2017$dep_sumtx/data2017$rec_sumtx)*100
+
+#### plot des taux de depassement par taux de remboursement ####
+
+txdep_tx <- aggregate(data2017$txdep_tx, list(data2017$REM_TAU), mean)
+
+ggplot(txdep_tx, aes(x=txdep_tx$Group.1, y=txdep_tx$x)) +
+  geom_bar(stat='identity') +
+  xlab("Taux de remboursement des prestations") +
+  ylab("Taux de dépassement des honoraires") +
+  ggtitle("Taux de depassement par taux de remboursement")
+
+# -- Plot taux de dépassements - taux de remboursement en se focus sur qq prestations -- #
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ---------------------------- Focus psychiatres ------------------------------- #
 
