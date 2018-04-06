@@ -5,6 +5,8 @@ library(Hmisc)
 library(ggplot2)
 #install.packages("base")
 library(base)
+#install.packages("reshape")
+library(reshape)
 
 ##################################################################################
 ######################### Donnees "medicament centrees" #########################
@@ -49,9 +51,9 @@ for (i in 2:12) {
   data2017 <- rbind(data2017, get(paste("df", i, sep = "_")))
 }
 
-# --------- Plot des dépassements / remboursements / dépenses par spécialités -------------- #
+# ----- Plot des dépassements/remboursements/dépenses par spécialités - niv agrege --------- #
 
-#### nb de specialites differentes des executants ############################################
+#### nb de specialites differentes des executants - niv agrege ###############################
 length(levels(data2017$l_exe_spe1)) #12
 
 #### mise en forme des variables de montants depenses ########################################
@@ -78,7 +80,7 @@ data2017$rem_mon2 <- as.numeric(data2017$rem_mon2)
 #reste a charge hors depassements
 data2017$reste <- data2017$rec_mon2 - data2017$rem_mon2
 
-#### creation des variables remboursements/restes a charge/depassements par specialite ########
+#### creation des var remboursements/restes a charge/depassements par specialite agregees ######
 
 #liste des valeurs (integer) prises par exe_spe (liste des specialites)
 list <- levels(as.factor(data2017$exe_spe1))
@@ -111,37 +113,141 @@ dep_sumspe <- aggregate(data2017$dep_sumspe, list(data2017$l_exe_spe1, data2017$
 tot <- cbind(rem_sumspe, reste_sumspe[,3], dep_sumspe[,3])
 colnames(tot) <- c("l_exe_spe1", "exe_spe1", "rem", "reste", "dep")
 
-tot2 <- data.frame(l_exe_spe1 = rep(tot$l_exe_spe1, 3), rem = rep(tot$rem, 3), reste = rep(tot$reste, 3), dep = rep(tot$dep, 3))
+tot2 <- melt(tot, id=c("l_exe_spe1", "exe_spe1")) 
 
 #### realisation du plot #################################################################
 
-ggplot(data=tot, aes(x=Group.1, y=len, fill=supp)) +
-  geom_bar(stat="identity")
-
-
-
-
-
-ggplot(rem_sumspe, aes(x=reorder(rem_sumspe$Group.1, rem_sumspe$x), y=rem_sumspe$x)) +
-  geom_bar(stat='identity') +
+ggplot(data=tot2, aes(x=l_exe_spe1, y=value, fill=variable)) +
+  geom_bar(stat="identity") +
   coord_flip() +
   xlab("Specialites") +
-  ylab("Montants rembourses") +
-  ggtitle("Montants rembourses par specialites")
+  ylab("Montants dépensés") +
+  ggtitle("Montants remboursés, restes à charge hors dépassements et dépassements par specialites")
 
-ggplot(dep_sumspe, aes(x=reorder(dep_sumspe$Group.1, dep_sumspe$x), y=dep_sumspe$x)) +
-  geom_bar(stat='identity') +
-  coord_flip() +
-  xlab("Depassements") +
-  ylab("Speciliatés") +
-  ggtitle("Montants des depassements par specialites")
+# --- Plot des dépassements/remboursements/dépenses par spécialités - niv moins agrege --- #
 
-ggplot(reste_sumspe, aes(x=reorder(reste_sumspe$Group.1, reste_sumspe$x), y=reste_sumspe$x)) +
-  geom_bar(stat='identity') +
+#### selection des specialites qui nous interesse ##########################
+
+DATA <- data2017[data2017$l_exe_spe1 == "Dentistes Omnipraticiens" |
+                   data2017$l_exe_spe1 == "Infirmiers"|
+                   data2017$l_exe_spe1 == "Orthoptistes" |
+                   data2017$l_exe_spe1 == "Médecins Spécialistes"|
+                   data2017$l_exe_spe1 == "Dentistes Spécialistes"|
+                   data2017$l_exe_spe1 == "Masseurs-Kinésithérapeutes"|
+                 data2017$l_exe_spe1 ==  "Orthophonistes"|
+                   data2017$l_exe_spe1 ==  "Sages-Femmes" |
+                   data2017$l_exe_spe1 == "Médecins Omnipraticiens",]
+
+#liste des valeurs (integer) prises par exe_spe (liste desagregee des specialites)
+list <- levels(as.factor(DATA$exe_spe))
+list <- as.integer(list) #length(list) = 69
+
+#somme des montants rembourses par specialite (exe_spe)
+DATA$rem_sumspe <- NA
+for(i in list) {
+  DATA[DATA$exe_spe==i,]$rem_sumspe <- sum(DATA[DATA$exe_spe==i,]$rem_mon2)
+}
+
+#somme des restes a charge par specialite (exe_spe)
+DATA$reste_sumspe <- NA
+for(i in list) {
+  DATA[DATA$exe_spe==i,]$reste_sumspe <- sum(DATA[DATA$exe_spe==i,]$reste)
+}
+
+#somme des depassements d'honoraires par specialite (exe_spe1)
+DATA$dep_sumspe <- NA
+for(i in list) {
+  DATA[DATA$exe_spe==i,]$dep_sumspe <- sum(DATA[DATA$exe_spe==i,]$dep_mon2)
+}
+
+#### mise en forme des donnees pour le plot #############################################
+
+rem_sumspe <- aggregate(DATA$rem_sumspe, list(DATA$l_exe_spe, DATA$exe_spe), mean)
+reste_sumspe <- aggregate(DATA$reste_sumspe, list(DATA$l_exe_spe, DATA$exe_spe), mean)
+dep_sumspe <- aggregate(DATA$dep_sumspe, list(DATA$l_exe_spe, DATA$exe_spe), mean)
+
+tot <- cbind(rem_sumspe, reste_sumspe[,3], dep_sumspe[,3])
+colnames(tot) <- c("l_exe_spe", "exe_spe", "rem", "reste", "dep")
+
+tot2 <- melt(tot, id=c("l_exe_spe", "exe_spe")) 
+
+#### realisation du plot #################################################################
+
+ggplot(data=tot2, aes(x=reorder(l_exe_spe, value), y=value, fill=variable)) +
+  geom_bar(stat="identity") +
   coord_flip() +
-  xlab("Reste a charge") +
-  ylab("Speciliatés") +
-  ggtitle("Reste a charge par specialites")
+  xlab("Specialites") +
+  ylab("Montants dépensés") +
+  ggtitle("Montants remboursés, restes à charge hors dépassements et dépassements par specialites")
+
+#### on affine en ne prenant que certains types de prestations ##########################
+
+length(levels(DATA$l_serie)) #182
+
+#on choisit de ne garder que les prestations appelees "CONSULTATIONS" par l'assu maladie
+DATA <- DATA[DATA$l_serie == "C autres" | DATA$l_serie == "C bilan"|
+               DATA$l_serie == "C Dentistes"| DATA$l_serie == "C Neuropsychiatres"|
+               DATA$l_serie == "C Omnipraticiens"| DATA$l_serie ==  "C Sages-femmes"|
+               DATA$l_serie ==  "C Spécialistes"| 
+               DATA$l_serie == "C Spécifique des Cardiologues",]
+
+#liste des valeurs (integer) prises par exe_spe (liste desagregee des specialites)
+list <- levels(as.factor(DATA$exe_spe))
+list <- as.integer(list) #length(list) = 54
+
+#somme des montants rembourses par specialite (exe_spe)
+DATA$rem_sumspe <- NA
+for(i in list) {
+  DATA[DATA$exe_spe==i,]$rem_sumspe <- sum(DATA[DATA$exe_spe==i,]$rem_mon2)
+}
+
+#somme des restes a charge par specialite (exe_spe)
+DATA$reste_sumspe <- NA
+for(i in list) {
+  DATA[DATA$exe_spe==i,]$reste_sumspe <- sum(DATA[DATA$exe_spe==i,]$reste)
+}
+
+#somme des depassements d'honoraires par specialite (exe_spe1)
+DATA$dep_sumspe <- NA
+for(i in list) {
+  DATA[DATA$exe_spe==i,]$dep_sumspe <- sum(DATA[DATA$exe_spe==i,]$dep_mon2)
+}
+
+#### mise en forme des donnees pour le plot #############################################
+
+rem_sumspe <- aggregate(DATA$rem_sumspe, list(DATA$l_exe_spe, DATA$exe_spe), mean)
+reste_sumspe <- aggregate(DATA$reste_sumspe, list(DATA$l_exe_spe, DATA$exe_spe), mean)
+dep_sumspe <- aggregate(DATA$dep_sumspe, list(DATA$l_exe_spe, DATA$exe_spe), mean)
+
+tot <- cbind(rem_sumspe, reste_sumspe[,3], dep_sumspe[,3])
+colnames(tot) <- c("l_exe_spe", "exe_spe", "rem", "reste", "dep")
+
+tot2 <- melt(tot, id=c("l_exe_spe", "exe_spe")) 
+
+#### realisation du plot #################################################################
+
+ggplot(data=tot2, aes(x=reorder(l_exe_spe, value), y=value, fill=variable)) +
+  geom_bar(stat="identity") +
+  coord_flip() +
+  xlab("Specialites") +
+  ylab("Montants dépensés") +
+  ggtitle("Montants remboursés, restes à charge hors dépassements et dépassements EN NE GARDANT QUE LES CONSULT")
+
+#### on essaie de denombrer les consultations pour chaque specialites #######################
+
+#nettoyage var act_dnb
+DATA$act_dnb2 <- as.character(DATA$act_dnb)
+DATA$act_dnb2 <- gsub("\\..*","", DATA$act_dnb2)
+DATA$act_dnb2 <- as.numeric(DATA$act_dnb2)
+
+#agregation
+agreg <- aggregate(DATA$act_dnb2, list(DATA$l_serie, DATA$l_exe_spe), sum)
+
+
+
+
+
+
 
 
 
