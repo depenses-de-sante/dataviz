@@ -32,7 +32,7 @@
   gtag('config', 'UA-115045625-1');
 </script>
 
-<!-- pour graphe interactif -->
+<!-- pour graphes interactif -->
 	<style>
         label {
             cursor: pointer;
@@ -42,6 +42,17 @@
             margin-bottom: 5px;
         }
     </style>
+	
+	<style>
+    #graphe7 {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    </style>
+	
+
 	
   </head>
   <body>
@@ -263,102 +274,36 @@
           <h2 class="section-title">«Qui coûtent le plus cher» à l'unité</h2>
           <hr class="lines">
           <p class="section-subtitle"> À l’unité <br> bli bla bla</p>
-        </div>
-        <div class="row">          
-          <div class="col-md-12">
-            <!-- Portfolio Controller/Buttons -->
-            <div class="controls text-center">
-              <a class="filter active btn btn-common" data-filter="all">
-                All 
-              </a>
-              <a class="filter btn btn-common" data-filter=".design">
-                Design 
-              </a>
-              <a class="filter btn btn-common" data-filter=".development">
-                Development
-              </a>
-              <a class="filter btn btn-common" data-filter=".print">
-                Print 
-              </a>
-            </div>
-            <!-- Portfolio Controller/Buttons Ends-->
-          </div>
-
-          <!-- Portfolio Recent Projects -->
-          <div id="portfolio" class="row">
-		  
-            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development print">
-              <div class="portfolio-item">
-                <div class="shot-item">
-				  <img src="img/portfolio/img1.jpg" alt="" />
-				  <a class="overlay lightbox" href="img/portfolio/img1.jpg">
-                    <i class="lnr lnr-eye item-icon"></i>
-                  </a>
-                </div>               
-              </div>
-            </div>
-			
-            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix design print">
-              <div class="portfolio-item">
-                <div class="shot-item">
-				 <!-- graphe 4 -->
-				 <div id="chart4" style="width:200px;height:200px;"></div>
-                 <!-- <img src="img/portfolio/img2.jpg" alt="" />  -->
-                  <a class="overlay lightbox" href="img/portfolio/img2.jpg">
-                    <i class="lnr lnr-eye item-icon"></i>
-                  </a>
-                </div>               
-              </div>
-            </div>
-			
-            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development">
-              <div class="portfolio-item">
-                <div class="shot-item">
-                  <img src="img/portfolio/img3.jpg" alt="" />  
-                  <a class="overlay lightbox" href="img/portfolio/img3.jpg">
-                    <i class="lnr lnr-eye item-icon"></i>
-                  </a>
-                </div>               
-              </div>
-            </div>
-			
-            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development design">
-              <div class="portfolio-item">
-                <div class="shot-item">
-                  <img src="img/portfolio/img4.jpg" alt="" />  
-                  <a class="overlay lightbox" href="img/portfolio/img4.jpg">
-                    <i class="lnr lnr-eye item-icon"></i>
-                  </a>
-                </div>               
-              </div>
-            </div>
-			
-            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development">
-              <div class="portfolio-item">
-                <div class="shot-item">
-                  <img src="img/portfolio/img5.jpg" alt="" />  
-                  <a class="overlay lightbox" href="img/portfolio/img5.jpg">
-                    <i class="lnr lnr-eye item-icon"></i>
-                  </a>
-                </div>               
-              </div>
-            </div>
-			
-            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix print design">
-              <div class="portfolio-item">
-                <div class="shot-item">
-                  <img src="img/portfolio/img6.jpg" alt="" />  
-                  <a class="overlay lightbox" href="img/portfolio/img6.jpg">
-                    <i class="lnr lnr-eye item-icon"></i>
-                  </a>
-                </div>               
-              </div>
-            </div>
-			
-          </div>
-        </div>
+        </div>	
       </div>
       <!-- Container Ends -->
+	  
+	  <div class="container">
+   
+        <div class="row">
+		
+		  <div class="col-lg-6 col-xs-12">
+            <div class="show-box">
+			
+					<!-- graphe 7 interactif-->
+						<div id="graphe7" style="height: 450px; width: 900px;"></div>
+			
+            </div>
+          </div>
+		
+
+        </div>
+      </div>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+	  
+	  
     </section>
     <!-- Portfolio Section Ends --> 
 
@@ -394,7 +339,7 @@ consommants / patients  </p>
 		
           <div class="col-md-8 col-sm-8 col-xs-12">
 		  
-		  		<!-- graphe 5 interactif-->
+		  	<!-- graphe 5 interactif-->
 			<div id='visualization'>
 				<div>Gross Domestic Product (Current US$ in Trillions)</div>
 				<div id='chart' style="width:500px;height:333px;float:left;"></div>
@@ -402,6 +347,10 @@ consommants / patients  </p>
 					<p>Select Regions to Include:</p>
 				</div>
 			</div>
+			
+			
+			<!-- graphe 4 -->
+			<div id="chart4" style="width:200px;height:200px;"></div>
 			
 		  </div>	
 		  
@@ -464,6 +413,101 @@ consommants / patients  </p>
           </div> 
 
         </div> -->
+		
+		
+		
+        <div class="row">          
+          <div class="col-md-12">
+            <!-- Portfolio Controller/Buttons -->
+            <div class="controls text-center">
+              <a class="filter active btn btn-common" data-filter="all">
+                All 
+              </a>
+              <a class="filter btn btn-common" data-filter=".design">
+                Design 
+              </a>
+              <a class="filter btn btn-common" data-filter=".development">
+                Development
+              </a>
+              <a class="filter btn btn-common" data-filter=".print">
+                Print 
+              </a>
+            </div>
+            <!-- Portfolio Controller/Buttons Ends-->
+          </div>
+
+          <!-- Portfolio Recent Projects -->
+          <div id="portfolio" class="row">
+		  
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development print">
+              <div class="portfolio-item">
+                <div class="shot-item">
+				  <img src="img/portfolio/img1.jpg" alt="" />
+				  <a class="overlay lightbox" href="img/portfolio/img1.jpg">
+                    <i class="lnr lnr-eye item-icon"></i>
+                  </a>
+                </div>               
+              </div>
+            </div>
+			
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix design print">
+              <div class="portfolio-item">
+                <div class="shot-item">
+                  <img src="img/portfolio/img2.jpg" alt="" /> 
+                  <a class="overlay lightbox" href="img/portfolio/img2.jpg">
+                    <i class="lnr lnr-eye item-icon"></i>
+                  </a>
+                </div>               
+              </div>
+            </div>
+			
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development">
+              <div class="portfolio-item">
+                <div class="shot-item">
+                  <img src="img/portfolio/img3.jpg" alt="" />  
+                  <a class="overlay lightbox" href="img/portfolio/img3.jpg">
+                    <i class="lnr lnr-eye item-icon"></i>
+                  </a>
+                </div>               
+              </div>
+            </div>
+			
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development design">
+              <div class="portfolio-item">
+                <div class="shot-item">
+                  <img src="img/portfolio/img4.jpg" alt="" />  
+                  <a class="overlay lightbox" href="img/portfolio/img4.jpg">
+                    <i class="lnr lnr-eye item-icon"></i>
+                  </a>
+                </div>               
+              </div>
+            </div>
+			
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development">
+              <div class="portfolio-item">
+                <div class="shot-item">
+                  <img src="img/portfolio/img5.jpg" alt="" />  
+                  <a class="overlay lightbox" href="img/portfolio/img5.jpg">
+                    <i class="lnr lnr-eye item-icon"></i>
+                  </a>
+                </div>               
+              </div>
+            </div>
+			
+            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix print design">
+              <div class="portfolio-item">
+                <div class="shot-item">
+                  <img src="img/portfolio/img6.jpg" alt="" />  
+                  <a class="overlay lightbox" href="img/portfolio/img6.jpg">
+                    <i class="lnr lnr-eye item-icon"></i>
+                  </a>
+                </div>               
+              </div>
+            </div>
+			
+          </div>
+        </div>
+		
 		
       </div>
     </div>
@@ -878,6 +922,15 @@ consommants / patients  </p>
 	<script src="js/flotr2.min.js"></script>
 	
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	
+	
+	<script src="https://cdn.anychart.com/releases/8.2.0/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.2.0/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.2.0/js/anychart-exports.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.anychart.com/releases/8.2.0/css/anychart-ui.min.css" />
+    <link rel="stylesheet" href="https://cdn.anychart.com/releases/8.2.0/fonts/css/anychart-font.min.css" />
+
+	
 
 	
 <!-- -------------------------------------------GRAPHES---------------------------------------------- -->
@@ -1265,6 +1318,124 @@ chart.render();
 
       });
 </script>
+
+
+<!-- graphe 7 interactif -->
+ <script type="text/javascript">
+anychart.onDocumentReady(function() {
+  // create data set
+  var dataSet = anychart.data.set(getData());
+
+  // map data for the first series, take x from the zero column and value from the first column of data set
+  var seriesData_1 = dataSet.mapAs({
+    'x': 0,
+    'value': 1
+  });
+
+  // map data for the second series, take x from the zero column and value from the second column of data set
+  var seriesData_2 = dataSet.mapAs({
+    'x': 0,
+    'value': 2
+  });
+
+  // create bar chart
+  var chart = anychart.bar();
+
+  // turn on chart animation
+  chart.animation(true);
+
+  // set padding
+  chart.padding([10, 20, 5, 20]);
+
+  // force chart to stack values by Y scale.
+  chart.yScale().stackMode('value');
+
+  // format y axis labels so they are always positive
+  chart.yAxis().labels().format(function() {
+    return Math.abs(this.value).toLocaleString();
+  });
+
+  // set title for Y-axis
+  chart.yAxis(0).title('Revenue in Dollars');
+
+  // allow labels to overlap
+  chart.xAxis(0).overlapMode('allow-overlap');
+
+  // turn on extra axis for the symmetry
+  chart.xAxis(1)
+    .enabled(true)
+    .orientation('right')
+    .overlapMode('allow-overlap');
+
+  // set chart title text
+  chart.title('Cosmetic Sales by Gender');
+
+  chart.interactivity().hoverMode('by-x');
+
+  chart.tooltip()
+    .title(false)
+    .separator(false)
+    .displayMode('separated')
+    .positionMode('point')
+    .useHtml(true)
+    .fontSize(12)
+    .offsetX(5)
+    .offsetY(0)
+    .format(function() {
+      return '<span style="color: #D9D9D9">$</span>' + Math.abs(this.value).toLocaleString();
+    });
+
+  // temp variable to store series instance
+  var series;
+
+  // create first series with mapped data
+  series = chart.bar(seriesData_1);
+  series.name('Females')
+    .color('HotPink');
+  series.tooltip()
+    .position('right')
+    .anchor('left-center');
+
+  // create second series with mapped data
+  series = chart.bar(seriesData_2);
+  series.name('Males');
+  series.tooltip()
+    .position('left')
+    .anchor('right-center');
+
+  // turn on legend
+  chart.legend()
+    .enabled(true)
+    .inverted(true)
+    .fontSize(13)
+    .padding([0, 0, 20, 0]);
+
+  // set container id for the chart
+  chart.container('graphe7');
+
+  // initiate chart drawing
+  chart.draw();
+});
+
+function getData() {
+  return [
+    ['dentiste', 5376, -229],
+    ['Eyebrow pencil', 10987, -932],
+    ['Rouge', 7624, -5221],
+    ['Lipstick', 8814, -256],
+    ['Eyeshadows', 8998, -308],
+    ['Eyeliner', 9321, -432],
+    ['Foundation', 8342, -701],
+    ['Lip gloss', 6998, -908],
+    ['Mascara', 9261, -712],
+    ['Shampoo', 5376, -9229],
+    ['Hair conditioner', 10987, -13932],
+    ['Body lotion', 7624, -10221],
+    ['Shower gel', 8814, -12256],
+    ['Soap', 8998, -5308],
+  ]
+}
+    </script>
 
 
 <!-- -------------------------------------------FIN GRAPHES---------------------------------------------- -->	
