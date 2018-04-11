@@ -51,80 +51,9 @@ for (i in 2:12) {
   data2017 <- rbind(data2017, get(paste("df", i, sep = "_")))
 }
 
-# ----- Plot des dépassements/remboursements/dépenses par spécialités - niv agrege --------- #
-
-#### nb de specialites differentes des executants - niv agrege ###############################
-length(levels(data2017$l_exe_spe1)) #12
-
-#### mise en forme des variables de montants depenses ########################################
-
-#bases de remboursement
-data2017$rec_mon2 <- as.character(data2017$rec_mon)
-data2017$rec_mon2 <- substr(data2017$rec_mon2, 1, nchar(data2017$rec_mon2)-3)
-data2017$rec_mon2 <- gsub("[^0123456789]", "", data2017$rec_mon2)
-data2017$rec_mon2 <- as.numeric(data2017$rec_mon2)
-#on a transforme en positif les chiffres inscrits en negatif
-
-#depassements d'honoraires
-data2017$dep_mon2 <- as.character(data2017$dep_mon)
-data2017$dep_mon2 <- substr(data2017$dep_mon2, 1, nchar(data2017$dep_mon2)-3)
-data2017$dep_mon2 <- gsub("[^0123456789]", "", data2017$dep_mon2)
-data2017$dep_mon2 <- as.numeric(data2017$dep_mon2)
-
-#montant rembourse
-data2017$rem_mon2 <- as.character(data2017$rem_mon)
-data2017$rem_mon2 <- substr(data2017$rem_mon2, 1, nchar(data2017$rem_mon2)-3)
-data2017$rem_mon2 <- gsub("[^0123456789]", "", data2017$rem_mon2)
-data2017$rem_mon2 <- as.numeric(data2017$rem_mon2)
-
-#reste a charge hors depassements
-data2017$reste <- data2017$rec_mon2 - data2017$rem_mon2
-
-#### creation des var remboursements/restes a charge/depassements par specialite agregees ######
-
-#liste des valeurs (integer) prises par exe_spe (liste des specialites)
-list <- levels(as.factor(data2017$exe_spe1))
-list <- as.integer(list) #length(list) = 12
-
-#somme des montants rembourses par specialite (exe_spe1)
-data2017$rem_sumspe <- NA
-for(i in list) {
-  data2017[data2017$exe_spe1==i,]$rem_sumspe <- sum(data2017[data2017$exe_spe1==i,]$rem_mon2)
-}
-
-#somme des restes a charge par specialite (exe_spe1)
-data2017$reste_sumspe <- NA
-for(i in list) {
-  data2017[data2017$exe_spe1==i,]$reste_sumspe <- sum(data2017[data2017$exe_spe1==i,]$reste)
-}
-
-#somme des depassements d'honoraires par specialite (exe_spe1)
-data2017$dep_sumspe <- NA
-for(i in list) {
-  data2017[data2017$exe_spe1==i,]$dep_sumspe <- sum(data2017[data2017$exe_spe1==i,]$dep_mon2)
-}
-
-#### mise en forme des donnees pour le plot #############################################
-
-rem_sumspe <- aggregate(data2017$rem_sumspe, list(data2017$l_exe_spe1, data2017$exe_spe1), mean)
-reste_sumspe <- aggregate(data2017$reste_sumspe, list(data2017$l_exe_spe1, data2017$exe_spe1), mean)
-dep_sumspe <- aggregate(data2017$dep_sumspe, list(data2017$l_exe_spe1, data2017$exe_spe1), mean)
-
-tot <- cbind(rem_sumspe, reste_sumspe[,3], dep_sumspe[,3])
-colnames(tot) <- c("l_exe_spe1", "exe_spe1", "rem", "reste", "dep")
-
-tot2 <- melt(tot, id=c("l_exe_spe1", "exe_spe1")) 
-
-#### realisation du plot #################################################################
-
-ggplot(data=tot2, aes(x=l_exe_spe1, y=value, fill=variable)) +
-  geom_bar(stat="identity") +
-  coord_flip() +
-  xlab("Specialites") +
-  ylab("Montants dépensés") +
-  ggtitle("Montants remboursés, restes à charge hors dépassements et dépassements par specialites")
-
-# --- Plot des dépassements/remboursements/dépenses par spécialités - niv moins agrege --- #
+#********************************************************************************************#
+# --- Plot des dépassements/remboursements/dépenses par spécialités - niv moins agrege ----- #
+#********************************************************************************************#
 
 #### selection des specialites qui nous interesse ##########################
 
@@ -140,7 +69,33 @@ DATA <- data2017[data2017$l_exe_spe1 == "Dentistes Omnipraticiens" |
 
 #liste des valeurs (integer) prises par exe_spe (liste desagregee des specialites)
 list <- levels(as.factor(DATA$exe_spe))
-list <- as.integer(list) #length(list) = 69
+list <- as.integer(list) #length(list) = 58
+
+#### mise en forme des variables de montants depenses ########################################
+
+#bases de remboursement
+DATA$rec_mon2 <- as.character(DATA$rec_mon)
+DATA$rec_mon2 <- substr(DATA$rec_mon2, 1, nchar(DATA$rec_mon2)-3)
+DATA$rec_mon2 <- gsub("[^0123456789]", "", DATA$rec_mon2)
+DATA$rec_mon2 <- as.numeric(DATA$rec_mon2)
+#on a transforme en positif les chiffres inscrits en negatif
+
+#depassements d'honoraires
+DATA$dep_mon2 <- as.character(DATA$dep_mon)
+DATA$dep_mon2 <- substr(DATA$dep_mon2, 1, nchar(DATA$dep_mon2)-3)
+DATA$dep_mon2 <- gsub("[^0123456789]", "", DATA$dep_mon2)
+DATA$dep_mon2 <- as.numeric(DATA$dep_mon2)
+
+#montant rembourse
+DATA$rem_mon2 <- as.character(DATA$rem_mon)
+DATA$rem_mon2 <- substr(DATA$rem_mon2, 1, nchar(DATA$rem_mon2)-3)
+DATA$rem_mon2 <- gsub("[^0123456789]", "", DATA$rem_mon2)
+DATA$rem_mon2 <- as.numeric(DATA$rem_mon2)
+
+#reste a charge hors depassements
+DATA$reste <- DATA$rec_mon2 - DATA$rem_mon2
+
+#### somme des valeurs par specialite ########################################
 
 #somme des montants rembourses par specialite (exe_spe)
 DATA$rem_sumspe <- NA
@@ -154,7 +109,7 @@ for(i in list) {
   DATA[DATA$exe_spe==i,]$reste_sumspe <- sum(DATA[DATA$exe_spe==i,]$reste)
 }
 
-#somme des depassements d'honoraires par specialite (exe_spe1)
+#somme des depassements d'honoraires par specialite (exe_spe)
 DATA$dep_sumspe <- NA
 for(i in list) {
   DATA[DATA$exe_spe==i,]$dep_sumspe <- sum(DATA[DATA$exe_spe==i,]$dep_mon2)
@@ -180,9 +135,10 @@ ggplot(data=tot2, aes(x=reorder(l_exe_spe, value), y=value, fill=variable)) +
   ylab("Montants dépensés") +
   ggtitle("Montants remboursés, restes à charge hors dépassements et dépassements par specialites")
 
-#### on affine en ne prenant que certains types de prestations ##########################
 
-length(levels(DATA$l_serie)) #182
+#******************************************************************************************#
+# ---------------------------- Focus sur les CONSULTATIONS ------------------------------- #
+#******************************************************************************************#
 
 #on choisit de ne garder que les prestations appelees "CONSULTATIONS" par l'assu maladie
 DATA <- DATA[DATA$l_serie == "C autres" | DATA$l_serie == "C bilan"|
@@ -194,6 +150,8 @@ DATA <- DATA[DATA$l_serie == "C autres" | DATA$l_serie == "C bilan"|
 #liste des valeurs (integer) prises par exe_spe (liste desagregee des specialites)
 list <- levels(as.factor(DATA$exe_spe))
 list <- as.integer(list) #length(list) = 54
+
+#### somme des valeurs par specialite ########################################
 
 #somme des montants rembourses par specialite (exe_spe)
 DATA$rem_sumspe <- NA
@@ -240,8 +198,42 @@ DATA$act_dnb2 <- as.character(DATA$act_dnb)
 DATA$act_dnb2 <- gsub("\\..*","", DATA$act_dnb2)
 DATA$act_dnb2 <- as.numeric(DATA$act_dnb2)
 
+#somme des consulations par specialites
+DATA$nb <- NA
+for(i in list) {
+  DATA[DATA$exe_spe==i,]$nb <- sum(DATA[DATA$exe_spe==i,]$act_dnb2)
+}
+
 #agregation
-agreg <- aggregate(DATA$act_dnb2, list(DATA$l_serie, DATA$l_exe_spe), sum)
+nb <- aggregate(DATA$nb, list(DATA$l_exe_spe, DATA$exe_spe), sum)
+
+#creation du vecteur des taux de depassement
+txdep <-  (dep_sumspe[,3]/(rem_sumspe[,3] + reste_sumspe[,3]))*100
+
+#fusion des vecteurs taux de depassement et nb de consultations
+
+tot3 <- cbind(nb, txdep)
+colnames(tot3) <- c("l_exe_spe", "exe_spe", "nb", "txdep")
+
+tot4 <- melt(tot3, id=c("l_exe_spe", "exe_spe")) 
+
+#on va essayer de faire deux barres : nb de consultations et taux de depassement
+
+ggplot(data=tot4, aes(x=reorder(l_exe_spe, value), y=value, fill=variable)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  coord_flip() +
+  xlab("Specialites") +
+  ylab("Tx dep et nb consult") +
+  ggtitle("Tx dep des consult et nb consult par spe")
+#echec
+
+#on essaie juste la barre des taux dep
+ggplot(data=tot3, aes(x=reorder(l_exe_spe, txdep), y=txdep)) +
+  geom_bar(stat="identity") +
+  coord_flip() +
+  xlab("Specialites") +
+  ylab("Tx dep") +
+  ggtitle("Tx dep des consult par spe")
 
 
 
@@ -258,8 +250,20 @@ agreg <- aggregate(DATA$act_dnb2, list(DATA$l_serie, DATA$l_exe_spe), sum)
 
 
 
+#********************************************************************************************#
+# ------------------------------------- Focus dentistes ------------------------------------ #
+#********************************************************************************************#
 
-# ------- Plot des taux de dépassements en fonction des taux de remboursement --------- #
+
+
+
+
+
+
+#********************************************************************************************#
+# ---------- Plot des taux de dépassements en fonction des taux de remboursement ----------- #
+#********************************************************************************************#
+
 
 #### mise en forme des variables bases de remboursement et depassements honoraires ####
 
@@ -320,71 +324,6 @@ ggplot(txdep_tx, aes(x=txdep_tx$Group.1, y=txdep_tx$x)) +
 
 
 
-# ---------------------------- Focus psychiatres ------------------------------- #
-
-#examen des modalites de la var "specialite de l'executant"
-levels(data2017$l_exe_spe)
-
-#creation base psychiatres
-data2017_psy <- data2017[data2017$l_exe_spe == "17-Neuropsychiatrie" |data2017$l_exe_spe == "33-Psychiatrie générale" | data2017$l_exe_spe == "75-Psychiatrie de l\"enfant et de l\"adolescent",]
-#NB "32-Neurologie" exclue
-length(data2017[data2017$l_exe_spe == "17-Neuropsychiatrie", ]) #seulement 28
-#àp 1968: Neuro et Psychiatrie sont separees
-
-#verification pas de duplicats des n-uplets type prestation - statut de l'executant etc
-length(unique(subset(data2017_psy, select = - c(rem_mon, rec_mon, dep_mon)))[,1])
-#il y a des duplicats
-
-#suppression des duplicats
-data2017_psy <- data2017_psy[duplicated(subset(data2017_psy, select = - c(rem_mon, rec_mon, dep_mon))) == FALSE, ]
-
-#mise en forme des variables bases de remboursement et depassements honoraires
-data2017_psy$rec_mon2 <- as.character(data2017_psy$rec_mon)
-data2017_psy$rec_mon2 <- substr(data2017_psy$rec_mon2, 1, nchar(data2017_psy$rec_mon2)-3)
-data2017_psy$rec_mon2 <- gsub("[^0123456789]", "", data2017_psy$rec_mon2)
-data2017_psy$rec_mon2 <- as.numeric(data2017_psy$rec_mon2)
-#transformation en positif des chiffres inscrits en negatif
-
-data2017_psy$dep_mon2 <- as.character(data2017_psy$dep_mon)
-data2017_psy$dep_mon2 <- substr(data2017_psy$dep_mon2, 1, nchar(data2017_psy$dep_mon2)-3)
-data2017_psy$dep_mon2 <- gsub("[^0123456789]", "", data2017_psy$dep_mon2)
-data2017_psy$dep_mon2 <- as.numeric(data2017_psy$dep_mon2)
-
-#liste des valeurs (integer) prises par prs_nat (type de prestation)
-list <- levels(as.factor(data2017_psy$prs_nat))
-list <- as.integer(list)
-
-#somme des bases de remboursement par type de prestation
-data2017_psy$rec_sumprs <- NA
-for(i in list) {
-  data2017_psy[data2017_psy$prs_nat==i,]$rec_sumprs <- sum(data2017_psy[data2017_psy$prs_nat==i,]$rec_mon2)
-}
-
-#somme des depassements d'honoraires par type de prestation
-data2017_psy$dep_sumprs <- NA
-for(i in list) {
-  data2017_psy[data2017_psy$prs_nat==i,]$dep_sumprs <- sum(data2017_psy[data2017_psy$prs_nat==i,]$dep_mon2)
-}
-
-#calcul des taux de depassement par type de prestation
-data2017_psy$txdep_prs <- (data2017_psy$dep_sumprs/data2017_psy$rec_sumprs)*100
-
-#quels types de prestations ont les plus hauts taux de depassement ?
-txdep_prs <- aggregate(data2017_psy$txdep_prs, list(data2017_psy$l_prs_nat, data2017_psy$prs_nat), mean)
-
-max(txdep_prs[!is.na(txdep_prs[,3]), 3]) 
-
-#plot des taux de depassement par prestations
-ggplot(txdep_prs, aes(x=reorder(txdep_prs$Group.1, txdep_prs$x), y=txdep_prs$x)) +
-  geom_bar(stat='identity') +
-  coord_flip() +
-  xlab("Taux de dépassement des honoraires") +
-  ylab("Type de prestation") +
-  ggtitle("Taux de depassement par type de prestation")
-
-#regarder le DENOMBREMENT des prestations ? variable act_dnb 
-#(attention, cette var n'est pas dispo pour tous les types de prestation)
-View(data2017_psy[data2017_psy$l_prs_nat == "ACTE DE RADIOLOGIE MAMMOGRAPHIE", ]$act_dnb)View(data2017_psy[data2017_psy$l_prs_nat == "ACTE DE RADIOLOGIE MAMMOGRAPHIE", ])
 
 
 
