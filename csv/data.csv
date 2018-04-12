@@ -1,0 +1,95 @@
+"CODE_DEPT","X.U.FEFF.CODE_REG","NOM_REGION","NOM_DEPT","NB_ARRONDS","NB_CANTONS","NB_COMMUNES","POP","txdep","rev_med"
+"01",82,"Rhône-Alpes","Ain",4,43,419,614331,14.343,21699.6
+"02",22,"Picardie","Aisne",5,42,816,555094,5.594,18477.6
+"03",83,"Auvergne","Allier",3,35,320,353124,5.623,19102
+"04",93,"Provence-Alpes-Côte d'Azur","Alpes-de-Haute-Provence",4,30,200,165155,9.477,19149.3
+"05",93,"Provence-Alpes-Côte d'Azur","Hautes-Alpes",2,30,177,142312,5.31,19386.2
+"06",93,"Provence-Alpes-Côte d'Azur","Alpes-Maritimes",2,52,163,1094579,19.707,20532.6
+"07",82,"Rhône-Alpes","Ardèche",3,33,339,324885,9.063,19384.4
+"08",21,"Champagne-Ardenne","Ardennes",4,37,463,291678,3.437,18310.7
+"09",73,"Midi-Pyrénées","Ariège",3,22,332,157582,5.45,18686.2
+"10",21,"Champagne-Ardenne","Aube",3,33,433,311720,7.816,19255.3
+"11",91,"Languedoc-Roussillon","Aude",3,35,438,365854,4.968,17793.5
+"12",73,"Midi-Pyrénées","Aveyron",3,46,304,288364,3.169,19424
+"13",93,"Provence-Alpes-Côte d'Azur","Bouches-du-Rhône",4,57,119,2000550,10.081,19955.3
+"14",25,"Basse-Normandie","Calvados",4,49,706,699561,7.128,20045.7
+"15",83,"Auvergne","Cantal",3,27,260,154135,2.591,19030
+"16",54,"Poitou-Charentes","Charente",3,35,404,364429,6.519,19450
+"17",54,"Poitou-Charentes","Charente-Maritime",5,51,472,640803,7.535,19800
+"18",24,"Centre","Cher",3,35,290,319600,7.814,19617
+"19",74,"Limousin","Corrèze",3,37,286,252235,6.319,19537
+"21",26,"Bourgogne","Côte-d'Or",3,43,706,538505,9.49,21034.7
+"22",53,"Bretagne","Côtes-d'Armor",4,52,373,612383,4.143,20018.5
+"23",74,"Limousin","Creuse",2,27,260,127919,4.094,17984
+"24",72,"Aquitaine","Dordogne",4,50,557,426607,7.465,18971
+"25",43,"Franche-Comté","Doubs",3,35,594,542509,5.484,20924
+"26",82,"Rhône-Alpes","Drôme",3,36,369,499313,9.487,19569.2
+"27",23,"Haute-Normandie","Eure",3,43,675,603194,10.835,20445
+"28",24,"Centre","Eure-et-Loir",4,29,402,440291,11.082,20829
+"29",53,"Bretagne","Finistère",4,54,283,929286,3.803,20471.3
+"30",91,"Languedoc-Roussillon","Gard",3,46,353,726285,8.963,18602.8
+"31",73,"Midi-Pyrénées","Haute-Garonne",3,53,589,1268370,6.68,21974.5
+"32",73,"Midi-Pyrénées","Gers",3,31,463,195489,5.212,19501.3
+"33",72,"Aquitaine","Gironde",6,63,542,1479277,9.58,20979.3
+"34",91,"Languedoc-Roussillon","Hérault",3,49,343,1062617,7.196,18973.8
+"35",53,"Bretagne","Ille-et-Vilaine",4,53,353,1015470,5.057,20884.6
+"36",24,"Centre","Indre",4,26,247,238261,7.08,19072
+"37",24,"Centre","Indre-et-Loire",3,37,277,605819,7.617,20561
+"38",82,"Rhône-Alpes","Isère",3,58,533,1233759,12.442,21406.7
+"39",43,"Franche-Comté","Jura",3,34,544,271973,7.079,20166.2
+"40",72,"Aquitaine","Landes",2,30,331,397766,7.537,20147.8
+"41",24,"Centre","Loir-et-Cher",3,30,291,340729,5.994,20131.3
+"42",82,"Rhône-Alpes","Loire",3,40,327,766729,7.743,19515
+"43",83,"Auvergne","Haute-Loire",3,35,260,231877,5.429,19452.8
+"44",52,"Pays de la Loire","Loire-Atlantique",4,59,221,1317685,6.249,20997.3
+"45",24,"Centre","Loiret",3,41,334,674913,13.925,20790
+"46",73,"Midi-Pyrénées","Lot",3,31,340,181232,3.551,19506
+"47",72,"Aquitaine","Lot-et-Garonne",4,40,319,342500,6.041,18756
+"48",91,"Languedoc-Roussillon","Lozère",2,25,185,81281,3.083,19110
+"49",52,"Pays de la Loire","Maine-et-Loire",4,41,363,808298,5.927,19687.2
+"50",25,"Basse-Normandie","Manche",4,52,601,517121,4.85,19548.1
+"51",21,"Champagne-Ardenne","Marne",5,44,620,579533,8.977,20314.3
+"52",21,"Champagne-Ardenne","Haute-Marne",3,32,438,191004,5.54,18887.1
+"53",52,"Pays de la Loire","Mayenne",3,32,261,317006,4.685,19530.7
+"54",41,"Lorraine","Meurthe-et-Moselle",4,44,594,746502,6.745,20397.8
+"55",41,"Lorraine","Meuse",3,31,500,200509,6.468,19342.5
+"56",53,"Bretagne","Morbihan",3,42,261,744663,3.834,20302.2
+"57",41,"Lorraine","Moselle",9,51,730,1066667,6.185,20403
+"58",26,"Bourgogne","Nièvre",4,32,312,226997,7.019,19181.2
+"59",31,"Nord-Pas-de-Calais","Nord",6,79,650,2617939,6.448,18740
+"60",22,"Picardie","Oise",4,41,693,823668,14.348,20804.7
+"61",25,"Basse-Normandie","Orne",3,40,505,301421,5.714,18864
+"62",31,"Nord-Pas-de-Calais","Pas-de-Calais",7,77,895,1489209,4.178,17894
+"63",83,"Auvergne","Puy-de-Dôme",5,61,470,649643,6.392,20687.2
+"64",72,"Aquitaine","Pyrénées-Atlantiques",3,52,547,674908,7.382,20696
+"65",73,"Midi-Pyrénées","Hautes-Pyrénées",3,34,474,237945,5.999,19427.3
+"66",91,"Languedoc-Roussillon","Pyrénées-Orientales",3,31,226,457238,4.751,17999.4
+"67",42,"Alsace","Bas-Rhin",7,44,527,1115226,15.86,21647
+"68",42,"Alsace","Haut-Rhin",6,31,377,765634,14.147,21963.3
+"69",82,"Rhône-Alpes","Rhône",2,54,293,1756069,21.624,21457
+"70",43,"Franche-Comté","Haute-Saône",2,32,545,247311,4.252,19177.5
+"71",26,"Bourgogne","Saône-et-Loire",5,57,573,574874,8.988,19588.9
+"72",52,"Pays de la Loire","Sarthe",3,40,375,579497,7.323,19755.5
+"73",82,"Rhône-Alpes","Savoie",3,37,305,428751,8.363,21441.5
+"74",82,"Rhône-Alpes","Haute-Savoie",4,34,294,760979,14.669,24375
+"75",11,"Île-de-France","Paris",1,20,1,2268265,49.261,26194.7
+"76",23,"Haute-Normandie","Seine-Maritime",3,69,744,1275952,6.075,19978
+"77",11,"Île-de-France","Seine-et-Marne",5,43,514,1347008,22.321,22191.3
+"78",11,"Île-de-France","Yvelines",4,39,262,1435448,33.686,25550
+"79",54,"Poitou-Charentes","Deux-Sèvres",3,33,305,380569,4.469,19584
+"80",22,"Picardie","Somme",4,46,782,583388,4.843,19059.5
+"81",73,"Midi-Pyrénées","Tarn",2,46,323,387099,3.751,19315
+"82",73,"Midi-Pyrénées","Tarn-et-Garonne",2,30,195,248227,5.841,18848.1
+"83",93,"Provence-Alpes-Côte d'Azur","Var",3,43,153,1026222,12.161,20118.5
+"84",93,"Provence-Alpes-Côte d'Azur","Vaucluse",3,24,151,555240,11.962,18521.3
+"85",52,"Pays de la Loire","Vendée",3,31,282,654096,5.979,19853.9
+"86",54,"Poitou-Charentes","Vienne",3,38,281,438566,5.266,19816.2
+"87",74,"Limousin","Haute-Vienne",3,42,201,384781,5.583,19698
+"88",41,"Lorraine","Vosges",3,31,515,392846,6.366,19096.7
+"89",26,"Bourgogne","Yonne",3,42,455,353366,12.276,19667.5
+"90",43,"Franche-Comté","Territoire de Belfort",1,15,102,146475,6.346,20255.3
+"91",11,"Île-de-France","Essonne",3,42,196,1233645,21.558,22954
+"92",11,"Île-de-France","Hauts-de-Seine",3,45,36,1590749,45.185,25960.7
+"93",11,"Île-de-France","Seine-Saint-Denis",3,40,40,1534895,14.2,16726
+"94",11,"Île-de-France","Val-de-Marne",3,49,47,1340868,25.427,21674.7
+"95",11,"Île-de-France","Val-d'Oise",3,39,185,1187836,20.937,20984.8
