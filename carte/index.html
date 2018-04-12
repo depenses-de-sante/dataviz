@@ -85,9 +85,8 @@
 			.attr("d", path);
 
 		d3.csv("csv/data.csv", function(csv) {
-			// Quantile scales map an input domain to a discrete range, 0...max(population) to 1...9
 			var quantile = d3.scaleQuantile()
-				.domain([0, d3.max(csv, function(e) { return +e.POP; })])
+				.domain([0, d3.max(csv, function(e) { return +e.txdep; })])
 				.range(d3.range(9));
 
 			var legend = svg.append('g')
@@ -104,7 +103,7 @@
 				.attr("class", function(d) { return "q" + d + "-9"; });
 				
 			var legendScale = d3.scaleLinear()
-				.domain([0, d3.max(csv, function(e) { return +e.POP; })])
+				.domain([0, d3.max(csv, function(e) { return +e.txdep; })])
 				.range([0, 9 * 20]);
 			
 			var legendAxis = svg.append("g")
@@ -113,14 +112,15 @@
 			
 			csv.forEach(function(e,i) {
 				d3.select("#d" + e.CODE_DEPT)
-					.attr("class", function(d) { return "department q" + quantile(+e.POP) + "-9"; })
+					.attr("class", function(d) { return "department q" + quantile(+e.txdep) + "-9"; })
 					.on("mouseover", function(d) {
 						div.transition()        
 							.duration(200)      
 							.style("opacity", .9);
 						div.html("<b>Région : </b>" + e.NOM_REGION + "<br>"
 								+ "<b>Département : </b>" + e.NOM_DEPT + "<br>"
-								+ "<b>Population : </b>" + e.POP + "<br>")
+								+ "<b>Taux de dépassement : </b>" + e.txdep + "<br>"
+                                + "<b> Revenu médian : </b>" + e.rev_med + " €" + "<br>")
 							.style("left", (d3.event.pageX + 30) + "px")     
 							.style("top", (d3.event.pageY - 30) + "px");
 					})
