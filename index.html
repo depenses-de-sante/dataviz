@@ -316,32 +316,7 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	<div class="section-header">          
-		  <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <br> </p>
-          <hr class="lines wow zoomIn" data-wow-delay="0.3s">
-		  <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <br> </p>
-          <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> graphe picto </p>
-    </div>
-      
-	
-	<div class="container">
-	  <div class="row">
-		
-		<!-- graphe picto -->
-        <div class="col-md-6 col-sm-6">
-		 <div class="infogram-embed" data-id="94809d73-4e1e-46f2-960f-47fbc0ff2d80" data-type="interactive" data-title="consommation medicament"></div><script>!function(e,t,n,s){var i="InfogramEmbeds",o=e.getElementsByTagName(t)[0],d=/^http:/.test(e.location)?"http:":"https:";if(/^\/{2}/.test(s)&&(s=d+s),window[i]&&window[i].initialized)window[i].process&&window[i].process();else if(!e.getElementById(n)){var a=e.createElement(t);a.async=1,a.id=n,a.src=s,o.parentNode.insertBefore(a,o)}}(document,"script","infogram-async","https://e.infogram.com/js/dist/embed-loader-min.js");</script><div style="padding:8px 0;font-family:Arial!important;font-size:13px!important;line-height:15px!important;text-align:center;border-top:1px solid #dadada;margin:0 30px"><a href="https://infogram.com/94809d73-4e1e-46f2-960f-47fbc0ff2d80" style="color:#989898!important;text-decoration:none!important;" target="_blank">consommation medicament</a><br><a href="https://infogram.com" style="color:#989898!important;text-decoration:none!important;" target="_blank" rel="nofollow">Infogram</a></div>
-	  
-	    </div>
-      </div>
-	</div>
-	  
-	</div>  
+
 	  
     </section>
     <!-- First Section End -->
@@ -408,7 +383,7 @@
             <div class="show-box">
 			
 				<!-- graphe 6 interactif -->
-				<div id="chartContainer" style="height: 400px; width: 600px;"></div>
+				<div id="chartContainer" style="height: 450px; width: 600px;"></div>
 			
               <!-- <img class="img-fulid" src="img/features/feature.png" alt=""> -->
             </div>
@@ -1451,6 +1426,16 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		labelFontColor: "#FFFFFF",
 		titleFontColor: "#FFFFFF"
 	},
+	
+	axisY2: {
+		title: "Percent",
+		suffix: "%",
+		gridThickness: 0,
+		tickColor: "#FFFFFF",
+		labelFontColor: "#FFFFFF",
+		titleFontColor: "#FFFFFF"
+	},
+	
 	legend: {
 		fontColor: "#FFFFFF"
     },
@@ -1465,8 +1450,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		name: "remboursé",
 		dataPoints: [
 			{ y: 1433.7,  label: "[0,3[" },
-			{ y: 663.9,   label: "[3,5[" },
-			{ y: 2073.6,  label: "[5,10[" },
+			{ y: 1076.3,   label: "[3,6[" },
+			{ y: 1661.2,  label: "[6,10[" },
 			{ y: 5198.4,  label: "[10,50[" },
 			{ y: 9221.6,  label: ">50" }
 		]
@@ -1478,15 +1463,72 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			color: "#FA8072",
 			dataPoints: [
 				{ y: 819.8,  label: "[0,3[" },
-				{ y: 356.5,  label: "[3,5[" },
-				{ y: 736.9,  label: "[5,10[" },
+				{ y: 524.3,  label: "[3,5[" },
+				{ y: 569.1,  label: "[5,10[" },
 				{ y: 1343.5,  label: "[10,50[" },
 				{ y: 572.9,  label: ">50" }
-			]
+		]
+
+		
+		
+		
 	}]
 });
-chart.render();
+chart.render();                               
 
+createPareto();
+
+
+function createPareto(){
+	var dps = [];
+	var yValue, yTotal = 0, yPercent = 0;
+	
+<!-- ---------------------------------------------------------------- -->
+	
+	var yval;
+	
+	yval = [{
+		type: "line",
+			axisYType: "secondary",
+			markerSize: 6,
+			name: "nb boîte",
+			showInLegend: true,
+			dataPoints: [
+				{ y: 57.58,  label: "[0,3[" },
+				{ y: 15.59,  label: "[3,6[" },
+				{ y: 12.61,  label: "[6,10[" },
+				{ y: 11.92,  label: "[10,50[" },
+				{ y: 2.30,  label: ">50" }
+	]
+	}]; 
+	
+<!-- ---------------------------------------------------------------- -->
+	
+	for(var i = 0; i < chart.data[0].dataPoints.length; i++)
+		yTotal += chart.data[0].dataPoints[i].y;
+
+	for(var i = 0; i < chart.data[0].dataPoints.length; i++) {
+		yValue = chart.data[0].dataPoints[i].y;
+		yPercent += (yValue / yTotal * 100);
+		dps.push({label: chart.data[0].dataPoints[i].label, y: yPercent });
+	}
+	console.log(dps);
+	dps = yval[0].dataPoints;
+
+	<!-- dps = dps.map(function(v,i){
+	<!--	return ({
+	<!--		label: v.label,
+	<!--		y: v.y *2,
+	<!--		x: i
+	<!--	});
+	<!-- });
+	
+	console.log(dps);
+	chart.addTo("data", {type:"line", axisYType: "secondary", yValueFormatString: "0.##\"%\"", indexLabel: "{y}", indexLabelFontColor: "#8ac665", dataPoints: dps});
+	chart.axisY[0].set("maximum", yTotal, false);
+	chart.axisY2[0].set("maximum", 105, false );
+	chart.axisY2[0].set("interval", 25 );
+}
 
 
 
