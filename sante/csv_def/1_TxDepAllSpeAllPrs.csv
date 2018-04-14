@@ -1,0 +1,13 @@
+Group.1;Group.2;txdep;
+1;Médecins Omnipraticiens;11;2.66322637156309
+2;Médecins Spécialistes;12;19.8786377888341
+3;Laboratoires;30;0.0174580281782773
+4;Dentistes Omnipraticiens;41;100.052850875114
+5;Dentistes Spécialistes;42;199.537650347202
+6;Sages-Femmes;50;1.34013768498172
+7;Infirmiers;60;0.0250566994750101
+8;Masseurs-Kinésithérapeutes;70;1.91036153946657
+9;Pédicures;80;11.3149709817445
+10;Orthophonistes;91;0.0414670928661409
+11;Orthoptistes;92;0.973128680329379
+12;Autres;99;1.02180943815582e-05
