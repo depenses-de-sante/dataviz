@@ -305,7 +305,18 @@
 	
 	</div>
 	
+		<div class="col-lg-6 col-xs-12">
+            <div class="show-box">
+			
+					<!-- graphe 7 interactif-->
+					<div id="graphe13" style="height: 450px; width: 1250px;"></div>
+
+            </div>
+    </div>
 	
+	
+	
+
 	
 	    <!-- Counter Section Start -->
     <div class="counters section" data-stellar-background-ratio="0.5">
@@ -480,21 +491,24 @@
       <!-- Container Starts -->
       <div class="container">
         <div class="section-header">          
-          <h2 class="section-title">Quels médecins pratiquent le plus de dépassements d'honoraires ?</h2>
+          <h2 class="section-title">Quels médecins allons nous voir le plus ?</h2>
           <hr class="lines">
-          <p class="section-subtitle"> À l’unité <br> bli bla bla</p>
+          <p class="section-subtitle"> bli bli <br> bli bla bla</p>
         </div>	
-      </div>
-      <!-- Container Ends -->
-	  
 
 	  
 	  
+	<div class="col-lg-6 col-xs-12">
+            <div class="show-box">
+			
+			<!-- graphe 10 -->
+			<div id="graphe12" style="height: 400px; width: 1050px;" ></div>
+			
+            </div>
+    </div>
 	  
-	  
-	  
-	  
-	  
+	</div>
+    <!-- Container Ends -->	  
 
 	  
 	  
@@ -507,9 +521,8 @@
         <div class="row justify-content-center">
           <div class="col-lg-8">
               <div class="video-promo-content text-center">
-                <h2 class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">«Qui coûtent le plus cher» au total</h2>
-                <p class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">Ou au total, car la quantité consommée est élevée, en nombre de boîtes / de visites, ou de
-consommants / patients  </p>
+                <h2 class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">Quels médecins pratiquent le plus de dépassements d'honoraires ?</h2>
+                <p class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">bla bla  </p>
                 <!-- <a href="https://www.youtube.com/watch?v=IXoMDwh4Cq8" class="video-popup wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s"><i class="lnr lnr-film-play"></i></a> -->
               </div>
           </div>
@@ -1192,6 +1205,12 @@ consommants / patients  </p>
     <script src="https://cdn.anychart.com/releases/8.2.0/js/anychart-exports.min.js"></script>
     <link rel="stylesheet" href="https://cdn.anychart.com/releases/8.2.0/css/anychart-ui.min.css" />
     <link rel="stylesheet" href="https://cdn.anychart.com/releases/8.2.0/fonts/css/anychart-font.min.css" />
+	
+
+	<script src="https://cdn.anychart.com/releases/8.2.0/js/anychart-circular-gauge.min.js"></script>
+
+	
+	
 	
 	<script src="https://cdn.anychart.com/releases/8.2.0/js/anychart-polar.min.js"></script>
 
@@ -1916,6 +1935,169 @@ anychart.onDocumentReady(function () {
 });
 	
 </script>	
+
+
+<!--gaphe 12 -->
+<script>
+anychart.onDocumentReady(function () {
+    // create data set on our data
+    var dataSet = anychart.data.set([
+        ['Lip gloss', 22998, 12043],
+        ['Eyeliner', 12321, 15067],
+        ['Eyeshadows', 12998, 12043],
+        ['Powder', 10261, 14419],
+        ['Mascara', 11261, 10419],
+        ['Foundation', 10342, 10119],
+        ['Rouge', 11624, 7004],
+        ['Lipstick', 8814, 9054],
+        ['Eyebrow pencil', 11012, 5067],
+        ['Nail polish', 9814, 3054]
+    ]);
+
+    // map data for the first series, take x from the zero column and value from the first column of data set
+    var seriesData_1 = dataSet.mapAs({'x': 0, 'value': 1});
+
+    // map data for the second series, take x from the zero column and value from the second column of data set
+    var seriesData_2 = dataSet.mapAs({'x': 0, 'value': 2});
+
+    // create column chart
+    var chart = anychart.column();
+
+    // turn on chart animation
+    chart.animation(true);
+
+    // set chart title text settings
+    chart.title('Top 10 Products by Revenue in two Regions');
+
+    // temp variable to store series instance
+    var series;
+
+    // helper function to setup label settings for all series
+    var setupSeries = function (series, name) {
+        series.name(name);
+        series.selected()
+                .fill('#f48fb1 0.8')
+                .stroke('1.5 #c2185b');
+    };
+
+    // create first series with mapped data
+    series = chart.column(seriesData_1);
+    series.xPointPosition(0.45);
+    setupSeries(series, 'Florida');
+
+    // create second series with mapped data
+    series = chart.column(seriesData_2);
+    series.xPointPosition(0.25);
+    setupSeries(series, 'Nombre de consultation');
+
+    // set chart padding
+    chart.barGroupsPadding(0.3);
+
+    // format numbers in y axis label to match browser locale
+    chart.yAxis().labels().format('${%Value}{groupsSeparator: }');
+
+    // set titles for Y-axis
+    chart.yAxis().title('Taux de dépassement');
+
+    // turn on legend
+    chart.legend()
+            .enabled(true)
+            .fontSize(13)
+            .padding([0, 0, 20, 0]);
+
+    chart.interactivity().hoverMode('single');
+
+    chart.tooltip().format('${%Value}{groupsSeparator: }');
+
+    // set container id for the chart
+    chart.container('graphe12');
+
+    // initiate chart drawing
+    chart.draw();
+});
+
+</script>
+
+
+<!-- graphe 13 -->
+<script>
+var names = ['ANTIGRIPPAUX', 'BACTERIENS ET VIRAUX ASSOCIES', 'ANTIPNEUMOCOCCIQUES', 'ROUGEOLE', 'ANTIMENINGOCOCCIQUES', 'Acetaminophen'];
+var data = [7699, 6058, 2657, 1626, 931, 10000];
+var dataSet = anychart.data.set(data);
+var palette = anychart.palettes.distinctColors().items(['#64b5f6', '#1976d2', '#ef6c00', '#ffd54f', '#455a64', '#96a6a6', '#dd2c00', '#00838f', '#00bfa5', '#ffa000']);
+
+var makeBarWithBar = function (gauge, radius, i, width, without_stroke) {
+    var stroke = '1 #e5e4e4';
+    if (without_stroke) {
+        stroke = null;
+        gauge.label(i)
+                .text(names[i] + ', <span style="">' + data[i] + ' m</span>')// color: #7c868e
+                .useHtml(true);
+        gauge.label(i)
+                .hAlign('center')
+                .vAlign('middle')
+                .anchor('right-center')
+                .padding(0, 10)
+                .height(width / 2 + '%')
+                .offsetY(radius + '%')
+                .offsetX(0);
+    }
+
+    gauge.bar(i).dataIndex(i)
+            .radius(radius)
+            .width(width)
+            .fill(palette.itemAt(i))
+            .stroke(null)
+            .zIndex(5);
+    gauge.bar(i + 100).dataIndex(5)
+            .radius(radius)
+            .width(width)
+            .fill('#F5F4F4')
+            .stroke(stroke)
+            .zIndex(4);
+
+    return gauge.bar(i)
+};
+
+anychart.onDocumentReady(function () {
+    var gauge = anychart.gauges.circular();
+    gauge.data(dataSet);
+    gauge.fill('#fff')
+            .stroke(null)
+            .padding(0)
+            .margin(100)
+            .startAngle(0)
+            .sweepAngle(270);
+
+    var axis = gauge.axis().radius(100).width(1).fill(null);
+    axis.scale()
+            .minimum(0)
+            .maximum(10000)
+            .ticks({interval: 1})
+            .minorTicks({interval: 1});
+    axis.labels().enabled(false);
+    axis.ticks().enabled(false);
+    axis.minorTicks().enabled(false);
+    makeBarWithBar(gauge, 100, 0, 17, true);
+    makeBarWithBar(gauge, 80, 1, 17, true);
+    makeBarWithBar(gauge, 60, 2, 17, true);
+    makeBarWithBar(gauge, 40, 3, 17, true);
+    makeBarWithBar(gauge, 20, 4, 17, true);
+
+    gauge.margin(50);
+    gauge.title().text('Top 5 des vaccins' +
+            '<br/><span style="color:#929292; font-size: 12px;">(nombre de vaccins vendus en milliers)</span>').useHtml(true);
+    gauge.title()
+            .enabled(true)
+            .hAlign('center')
+            .padding(0)
+            .margin([0, 0, 20, 0]);
+
+    gauge.container('graphe13');
+    gauge.draw();
+});
+</script>
+
 
 
 <!-- -------------------------------------------FIN GRAPHES---------------------------------------------- -->	
