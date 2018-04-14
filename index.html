@@ -92,6 +92,13 @@
             display: block;
             margin: auto;
         }
+		
+		#centrer,centrer2
+        {
+		text-align: center;
+        }
+        </style>
+		
     </style>
 
 	
@@ -375,13 +382,15 @@
       
 	
 	<div class="container">
-	  <div class="row">
+	<div id="centrer">
+
 		
 		<!-- graphe carte numero 2 : map2 -->
-		<div id="map2" style="height: 350px; width: 1050px;"></div>
+		<div id="map2" ></div>
 
-	    </div>
+
       </div>
+	</div>
 	</div>
 	
 	
@@ -478,7 +487,37 @@
       </div>
       <!-- Container Ends -->
 	  
-	  <div class="col-lg-6 col-xs-12">
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+	  
+	  
+    </section>
+    <!-- Portfolio Section Ends --> 
+
+    <!-- Start Video promo Section -->
+    <section class="video-promo section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+              <div class="video-promo-content text-center">
+                <h2 class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">«Qui coûtent le plus cher» au total</h2>
+                <p class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">Ou au total, car la quantité consommée est élevée, en nombre de boîtes / de visites, ou de
+consommants / patients  </p>
+                <!-- <a href="https://www.youtube.com/watch?v=IXoMDwh4Cq8" class="video-popup wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s"><i class="lnr lnr-film-play"></i></a> -->
+              </div>
+          </div>
+        </div>
+      </div>
+	  
+	  
+		  <div class="col-lg-6 col-xs-12">
             <div class="show-box">
 			
 			<!-- graphe 11 -->
@@ -522,9 +561,14 @@
 		
 		<div class="col-lg-6 col-xs-12">
             <div class="show-box">
+			
+
 		
 					<!-- carte dépassement-->
 					<div id="map"></div>
+					
+	
+			
 		
 		    </div>
           </div>
@@ -532,34 +576,17 @@
 		
 
         </div>
-      </div>
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+      </div> 
+	 
 
-	  
-	  
-    </section>
-    <!-- Portfolio Section Ends --> 
 
-    <!-- Start Video promo Section -->
-    <section class="video-promo section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-              <div class="video-promo-content text-center">
-                <h2 class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">«Qui coûtent le plus cher» au total</h2>
-                <p class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">Ou au total, car la quantité consommée est élevée, en nombre de boîtes / de visites, ou de
-consommants / patients  </p>
-                <a href="https://www.youtube.com/watch?v=IXoMDwh4Cq8" class="video-popup wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0.3s"><i class="lnr lnr-film-play"></i></a>
-              </div>
-          </div>
-        </div>
-      </div>
+
+
+
+
+
+	 
+	  
     </section>
     <!-- End Video Promo Section -->
 
@@ -1812,21 +1839,57 @@ anychart.onDocumentReady(function () {
     // create polar chart
     var chart = anychart.polar();
 
-		    var columnSeries = chart.column([
+	var columnSeries = chart.column([
     <!--    {x: 'Laboratoires', value: 0.017}, 
 	<!--	{x: 'Infirmiers', value: 0.025},
     <!--    {x: 'Orthophonistes', value: 0.041},
 	<!--	{x: 'Orthoptistes', value: 0.973},
-	  	{x: 'Autres', value: 1.021},
-        {x: 'Masseurs-Kinésithérapeutes', value: 1.910},
-		{x: 'Médecins Omnipraticiens', value: 2.663}, 
-        {x: 'Pédicures', value: 11.314},
-		{x: 'Médecins Spécialistes', value: 19.878},
-		{x: 'Dentistes Omnipraticiens', value: 100.052},
-        {x: 'Dentistes Spécialistes', value: 199.537}
+	<!--  	{x: 'Autres', value: 1.021},
+    <!--    {x: 'Masseurs-Kinésithérapeutes', value: 1.910},
+	<!--	{x: 'Médecins Omnipraticiens', value: 2.663}, 
+    <!--    {x: 'Pédicures', value: 11.314},
+	<!--	{x: 'Médecins Spécialistes', value: 19.878},
+		
+		{x: 'Gynécologie médicale', value: 30.10},
+		{x: 'Endocrinologie', value: 30.81},
+		{x: "Psychiatrie de l'enfant et de l'adolescent", value: 31.02},
+		{x: 'Ophtalmologie', value: 34.70},
+		{x: 'Génétique médicale', value: 42.17},
+		{x: 'Gynécologie obstétrique', value: 45.18},
+		{x: 'Chirurgie autre', value: 60.00},
+		{x: 'Stomatologie', value: 90.69},
+        {x: 'Dentistes', value: 108.377},		
+		{x: 'Chirurgie plastique reconstructrice et esthétique', value: 141.91}
+
     ]);
 	
+	// appearence
+	chart.background().fill('transparent');
 	
+	chart.title().fontColor('white');
+	
+	var labels = chart.xAxis().labels();
+	// labels.fontFamily("Courier");
+	// labels.fontSize(12);
+	labels.fontColor('white');
+	
+	chart.xGrid().stroke({
+	// set stroke color
+	color: 'white',
+	// set dashes and gaps length
+	// dash: "3 5"
+	});
+	
+		chart.yGrid().stroke({
+	// set stroke color
+	color: 'white',
+	// set dashes and gaps length
+	// dash: "3 5"
+	});
+	
+	
+	
+
     // set series name
     columnSeries.name('taux de dépassement');
 
