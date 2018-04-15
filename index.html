@@ -310,6 +310,14 @@
 			
 					<!-- graphe 7 interactif-->
 					<div id="graphe13" style="height: 450px; width: 1250px;"></div>
+					
+					
+					
+					<!-- graphe 14 interactif-->
+					<div id="graphe14" style="height: 370px; width: 100%;"></div>
+					
+					<!-- graphe 15 interactif-->
+					<div id="graphe15" style="height: 370px; width: 100%;"></div>
 
             </div>
     </div>
@@ -1189,6 +1197,8 @@
 	
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	
+	<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	
 	
 	<script src="https://cdn.anychart.com/releases/8.2.0/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.2.0/js/anychart-ui.min.js"></script>
@@ -1358,6 +1368,87 @@ function createPareto(){
 
 
 
+
+<!-- graphe 14 -->
+var chart = new CanvasJS.Chart("graphe14", {
+	animationEnabled: true,
+	title:{
+		text: "% d'hommes et de femmes consommant des médicaments du système génitaux hormonal en fonction de leur âge",
+		fontFamily: "calibri",
+		fontSize : 20,
+
+	},
+	axisY :{
+		includeZero: false,
+		prefix: "% "
+	},
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		fontSize: 13
+	},
+	data: [
+	{
+		type: "splineArea", 
+		showInLegend: true,
+		yValueFormatString: "##,## %",      
+		name: "Femmes",
+		dataPoints: [
+			{ y: 11.75,  label: "de 0 à 20 ans" },
+			{ y: 42.71,  label: "de 20 à 60 ans" },
+			{ y: 15.43,  label: "après 60 ans" }
+		]
+	},
+      {
+		type: "splineArea",
+		showInLegend: true,
+		name: "Hommes",
+		yValueFormatString: "#,## %",
+		dataPoints: [
+			{ y: 0.36,  label: "de 0 à 20 ans" },
+			{ y: 2.27,  label: "de 20 à 60 ans" },
+			{ y: 23.13,  label: "après 60 ans" }
+		]
+ 	}]
+});
+chart.render();
+
+
+<!-- graphe 15 interactif-->
+var chart = new CanvasJS.Chart("graphe15", {
+	exportEnabled: true,
+	animationEnabled: true,
+	title:{
+		text: "Part des génériques parmi les analgésiques dont un générique existe",
+      	fontFamily: "calibri",
+		fontSize : 20,
+	},
+	legend:{
+		cursor: "pointer",
+		itemclick: explodePie
+	},
+	data: [{
+		type: "pie",
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}%</strong>",
+		indexLabel: "{name} - {y}%",
+		dataPoints: [
+			{ y: 25, name: "Référent", exploded: true },
+			{ y: 75, name: "Générique"}
+		]
+	}]
+});
+chart.render();
+}
+
+function explodePie (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.chart.render();
 
 
 
