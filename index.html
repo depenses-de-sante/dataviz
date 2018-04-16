@@ -1362,17 +1362,26 @@ var chart = new CanvasJS.Chart("graphe14", {
 		text: "% d'hommes et de femmes consommant des médicaments du système génitaux hormonal en fonction de leur âge",
 		fontFamily: "calibri",
 		fontSize : 20,
+		fontColor : "GRAY",
 
+	},
+	axisX :{
+		lineColor : "GRAY",
+		labelFontColor : "GRAY",
 	},
 	axisY :{
 		includeZero: false,
-		prefix: "% "
+		prefix: "% ",
+		gridColor :  "GRAY",
+		lineColor : "GRAY",
+		labelFontColor : "GRAY",
 	},
 	toolTip: {
 		shared: true
 	},
 	legend: {
-		fontSize: 13
+		fontSize: 13,
+		fontColor : "GRAY",
 	},
 	data: [
 	{
@@ -1411,10 +1420,12 @@ var chart = new CanvasJS.Chart("graphe15", {
 		text: "Part des génériques parmi les analgésiques dont un générique existe",
       	fontFamily: "calibri",
 		fontSize : 20,
+		fontColor : "GRAY",
 	},
 	legend:{
 		cursor: "pointer",
-		itemclick: explodePie
+		itemclick: explodePie,
+		fontColor : "GRAY",
 	},
 	data: [{
 		type: "pie",
@@ -1422,8 +1433,8 @@ var chart = new CanvasJS.Chart("graphe15", {
 		toolTipContent: "{name}: <strong>{y}%</strong>",
 		indexLabel: "{name} - {y}%",
 		dataPoints: [
-			{ y: 25, name: "Référent", exploded: true },
-			{ y: 75, name: "Générique"}
+			{ y: 25, name: "Référent", color:"LIGHTSKYBLUE",exploded: true },
+			{ y: 75, name: "Générique", color:"SALMON"}
 		]
 	}]
 });
@@ -1530,11 +1541,14 @@ var chart = new CanvasJS.Chart("graphe17", {
 		text: "Taux de dépassement parmi les 5 départements ayant le plus faible revenu médian",
 		fontFamily: "calibri",
 		<!-- fontColor: "#FFFFFF",
-		fontSize : 20
+		fontSize : 20,
+		fontColor : "GRAY",
 	},	
 	axisX: {
 	labelFontSize: 15,
 	lineColor: "LIGHTSKYBLUE",
+	labelFontColor : "GRAY",
+	
 	},
 	axisY: {
 		title: "Nombre de visites",
@@ -1548,6 +1562,7 @@ var chart = new CanvasJS.Chart("graphe17", {
 		interval: 200,
 		labelFontSize: 15,
 		gridColor: "white",
+		labelFontColor : "GRAY",
 	},
 	axisY2: {
 		title: "Taux de dépassement",
@@ -1560,6 +1575,7 @@ var chart = new CanvasJS.Chart("graphe17", {
 		labelFontSize: 15,
 		maximum : 100,
 		interval : 10,
+		labelFontColor : "GRAY",
 	},	
 	toolTip: {
 		shared: true
@@ -1568,6 +1584,7 @@ var chart = new CanvasJS.Chart("graphe17", {
 		cursor:"pointer",
 		itemclick: toggleDataSeries2,
 		fontSize : 15,
+		fontColor : "GRAY",
 	},
 	data: [{
 		type: "bar",
