@@ -533,6 +533,10 @@
 			
 					<!-- graphe 17 -->
 					<div id="graphe17" style="height: 600px; width: 800;"></div>
+					
+					<!-- graphe 18 -->
+					<div id="graphe18" style="height: 600px; width: 800;"></div>
+			
 			
             </div>
     </div>
@@ -1538,7 +1542,7 @@ var chart = new CanvasJS.Chart("graphe17", {
 	backgroundColor: null,
 	animationEnabled: true,
 	title:{
-		text: "Taux de dépassement parmi les 5 départements ayant le plus faible revenu médian",
+		text: "Top 10 des médecins les plus visités",
 		fontFamily: "calibri",
 		<!-- fontColor: "#FFFFFF",
 		fontSize : 20,
@@ -1639,17 +1643,129 @@ function toggleDataSeries2(e) {
 }
 
 
-
-
-
-
-
-
-
 };	
 	   </script>
 	   
 <!-- -------------------------------------------GRAPHES INTERACTIFS---------------------------------------------- -->
+	
+	
+<!--graphe 18 -->	
+<script>	
+	anychart.onDocumentReady(function () {
+    var data = [
+      	{'name': 'médecin généraliste', 'value': 26.6, 'low': 0, 'high': 999},
+        {'name': 'psychiatrie générale', 'value': 212.5, 'low': 0, 'high': 936.4},
+        {'name': 'Pédiatrie', 'value': 227.0, 'low': 0, 'high': 433.3},
+        {'name': 'Ophtalmologie', 'value': 536.6, 'low': 0, 'high': 371.6},
+        {'name': 'Gynécologie obtétrique', 'value': 635.1, 'low': 0, 'high': 351.3},
+      	{'name': 'Dermatologie et vénérologie', 'value': 253.1, 'low': 0, 'high': 315.58},
+        {'name': 'Pathologie cardiovasculaire', 'value': 78.1, 'low': 0, 'high': 166.7},
+        {'name': 'Anesthésiologie  Réanimation chirurgicale', 'value': 218.9, 'low': 0, 'high': 152.6},
+        {'name': 'Chirurgie orthopédique et traumatologie', 'value': 482.7, 'low': 0, 'high': 106.6},
+      	{'name': 'Gynécologie médicale', 'value': 383.6, 'low': 0, 'high': 88.9},
+      
+    ];
+
+    var chart = anychart.polar();
+
+    // set title settings
+    chart.title()
+            .enabled(true)
+            .text('Top 10 des médecins les plus visités')
+            .padding({bottom: 20});
+
+    // setup chart appearance settings
+    chart.innerRadius('5%')
+            .background('#FEFEFE')
+            .sortPointsByX(true)
+            .xScale('ordinal')
+            .yAxis(false)
+  			//.yScale().maximum(100);
+
+    // setup chart scales settings
+    chart.xScale().names('name');
+
+    // format chart tooltip
+    chart.tooltip().displayMode('union')
+            .titleFormat('{%Name}')
+            .format(function () {
+                if (this.value) {
+                    return 'Taux de dépassement : % ' + this.value/10
+                } else if (this.high) {
+                    return 'Nombre de visites : mm ' + this.high 
+                }
+            });
+
+    // set chart grid settings
+    chart.yGrid().fill('#fefefe');
+    chart.xGrid(true);
+
+    // set chart x-axis settings
+    chart.xAxis()
+            .fill('#EDECEF')
+            .stroke('none')
+            .overlapMode('auto-width');
+
+    // set chart x-axis ticks settings
+    chart.xAxis().ticks()
+            .length('100%')
+            .stroke('#FEFEFE');
+
+    // set chart x-axis labels settings
+    chart.xAxis().labels()
+            .padding(15)
+            .fontSize(12)
+            .hAlign('center');
+
+    // set legend settings
+    chart.legend()
+            .enabled(true)
+            .positionMode('outside')
+            .itemsLayout('vertical')
+            .position('center-bottom')
+            .align('left')
+            .itemsSpacing(5)
+            .margin({'top': -30});
+
+    // create ploygon series
+    var polygon = chart.polygon(data);
+    polygon.name('Taux de dépassement')
+            .color('SALMON')
+            .fill('rgba(180, 180, 180, 0.3)')
+            .zIndex(31);
+    polygon.hovered().markers().fill('SALMON');
+    polygon.legendItem()
+            .iconFill('SALMON')
+            .iconType('line')
+            .iconStroke('6 SALMON');
+
+    // create range column series
+    var rangeColumn = chart.rangeColumn(data);
+    rangeColumn.name('Nombre de visite')
+            .pointWidth('85%')
+            .color('LIGHTSKYBLUE');
+
+    // workaround to make even/odd xAxis labels coloring
+    chart.listen('chartDraw', function () {
+        var count = chart.xAxis().labels().getLabelsCount();
+        for (var i = 0; i < count; i++) {
+            var color = i % 2 ? 'SALMON' : '#4C4C4C';
+            var label = chart.xAxis().labels().getLabel(i);
+            if (label) {
+                label.fontColor(color);
+                label.draw();
+            }
+        }
+    });
+
+    // set chart container id
+    chart.container('graphe18');
+
+    // initiate chart drawing
+    chart.draw();
+});
+</script>
+	
 	
 
 <!-- code graphe 5 interactif -->	
