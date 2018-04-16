@@ -610,6 +610,7 @@
 					<!-- carte dépassement-->
 					<div id="map"></div>
 					
+					<div id="graphe16" style="height: 400px; width: 100%;"></div>
 	
 			
 		
@@ -623,22 +624,6 @@
 	 
 
 
-	<div class="container">
-   
-        <div class="row">
-		
-		<div class="col-lg-6 col-xs-12">
-            <div class="show-box">
-				
-					<!-- quizz-->
-					<p> quizz </p>
-							
-		
-		    </div>
-          </div>
-		
-        </div>
-    </div> 
 	 
 	 
 	 
@@ -1394,6 +1379,7 @@ var chart = new CanvasJS.Chart("graphe14", {
 		showInLegend: true,
 		yValueFormatString: "##,## %",      
 		name: "Femmes",
+		color :'HotPink',
 		dataPoints: [
 			{ y: 11.75,  label: "de 0 à 20 ans" },
 			{ y: 42.71,  label: "de 20 à 60 ans" },
@@ -1404,6 +1390,7 @@ var chart = new CanvasJS.Chart("graphe14", {
 		type: "splineArea",
 		showInLegend: true,
 		name: "Hommes",
+		color : 'DodgerBlue',
 		yValueFormatString: "#,## %",
 		dataPoints: [
 			{ y: 0.36,  label: "de 0 à 20 ans" },
@@ -1440,7 +1427,7 @@ var chart = new CanvasJS.Chart("graphe15", {
 	}]
 });
 chart.render();
-}
+
 
 function explodePie (e) {
 	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
@@ -1449,6 +1436,91 @@ function explodePie (e) {
 		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
 	}
 	e.chart.render();
+
+
+}
+
+
+<!--graphe 16 -->
+<!--graphe 16 -->
+var chart = new CanvasJS.Chart("graphe16", {
+	backgroundColor: null,
+	animationEnabled: true,
+	title:{
+		text: "Taux de dépassement parmi les 5 départements ayant le plus faible revenu médian",
+		fontFamily: "calibri",
+		<!-- fontColor: "#FFFFFF",
+		fontSize : 20
+	},	
+	axisY: {
+		title: "Revenu médian",
+		titleFontColor: "#4F81BC",
+		lineColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		tickColor: "#4F81BC",
+		titleFontSize: 15,
+		labelAngle: 0,
+		prefix: "€",
+		interval: 5000
+	},
+	axisY2: {
+		title: "Taux de dépassement",
+		titleFontColor: "#C0504E",
+		lineColor: "#C0504E",
+		labelFontColor: "#C0504E",
+		tickColor: "#C0504E",
+		titleFontSize: 15,
+		prefix: "%"
+	},	
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor:"pointer",
+		itemclick: toggleDataSeries
+	},
+	data: [{
+		type: "bar",
+		name: "Revenu médian",
+		legendText: "Revenu médian",
+		showInLegend: true, 
+		dataPoints:[
+          	{ label: "Pyrénées orientales", y: 17999 },
+            { label: "Creuse", y: 17984 },
+            { label: "Pas-de-Calais", y: 17894  },
+          	{ label: "Aude", y: 17793 },
+            { label: "Seine-saint-Denis", y: 16726 }
+          
+		]
+	},
+	{
+		type: "bar",	
+		name: "Taux de dépassement",
+		legendText: "Taux de dépassement",
+		axisYType: "secondary",
+		showInLegend: true,
+		dataPoints:[
+			{ label: "Pyrénées orientales", y: 4.7 },
+            { label: "Creuse", y: 4.1 },
+            { label: "Pas-de-Calais", y: 4.2 },
+          	{ label: "Aude", y: 5.0 },
+            { label: "Seine-saint-Denis", y: 14.2 }
+		]
+	}]
+});
+chart.render();
+
+function toggleDataSeries(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+
 
 
 
@@ -1601,7 +1673,8 @@ anychart.onDocumentReady(function() {
 
   // create second series with mapped data
   series = chart.bar(seriesData_2);
-  series.name('Hommes');
+  series.name('Hommes')
+	.color('DodgerBlue');
   series.tooltip()
     .position('left')
     .anchor('right-center');
