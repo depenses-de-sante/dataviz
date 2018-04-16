@@ -523,7 +523,7 @@
         <div class="section-header">          
           <h2 class="section-title">Quels médecins allons nous voir le plus ?</h2>
           <hr class="lines">
-          <p class="section-subtitle"> bli bli <br> bli bla bla</p>
+          <p class="section-subtitle"> Les médecins généralistes comptabilisent 252.3 millions de visites (taux dep 2.9%)<br>Qu'en est-il des autres ?</p>
         </div>	
 
 	  
@@ -531,9 +531,6 @@
 	<div class="col-lg-12 col-xs-12">
             <div class="show-box">
 			
-					<!-- graphe 17 -->
-					<div id="graphe17" style="height: 600px; width: 800;"></div>
-					
 					<!-- graphe 18 -->
 					<div id="graphe18" style="height: 600px; width: 800;"></div>
 			
@@ -1534,117 +1531,8 @@ function toggleDataSeries(e) {
 	chart.render();
 }
 
-
-
-
-<!--graphe 17 -->
-var chart = new CanvasJS.Chart("graphe17", {
-	backgroundColor: null,
-	animationEnabled: true,
-	title:{
-		text: "Top 10 des médecins les plus visités",
-		fontFamily: "calibri",
-		<!-- fontColor: "#FFFFFF",
-		fontSize : 20,
-		fontColor : "GRAY",
-	},	
-	axisX: {
-	labelFontSize: 15,
-	lineColor: "LIGHTSKYBLUE",
-	labelFontColor : "GRAY",
-	
-	},
-	axisY: {
-		title: "Nombre de visites",
-		titleFontColor: "LIGHTSKYBLUE",
-		lineColor: "LIGHTSKYBLUE",
-		labelFontColor: "LIGHTSKYBLUE",
-		tickColor: "LIGHTSKYBLUE",
-		titleFontSize: 15,
-		labelAngle: 0,
-		prefix: "mm",
-		interval: 200,
-		labelFontSize: 15,
-		gridColor: "white",
-		labelFontColor : "GRAY",
-	},
-	axisY2: {
-		title: "Taux de dépassement",
-		titleFontColor: "SALMON",
-		lineColor: "SALMON",
-		labelFontColor: "SALMON",
-		tickColor: "SALMON",
-		titleFontSize: 15,
-		prefix: "%",
-		labelFontSize: 15,
-		maximum : 100,
-		interval : 10,
-		labelFontColor : "GRAY",
-	},	
-	toolTip: {
-		shared: true
-	},
-	legend: {
-		cursor:"pointer",
-		itemclick: toggleDataSeries2,
-		fontSize : 15,
-		fontColor : "GRAY",
-	},
-	data: [{
-		type: "bar",
-		color:"LIGHTSKYBLUE",
-		name: "Nombre de visites (mm)",
-		legendText: "Nombre de visites",
-		showInLegend: true, 
-		dataPoints:[
-      	{label: 'Gynécologie médicale', y: 88.9},
-		{label:'Chirurgie orthopédique et traumatologie', y: 106.6},
-		{label: 'Anesthésiologie  Réanimation chirurgicale', y: 152.6},
-		{label: 'Pathologie cardiovasculaire', y: 166.7},
-		{label: 'Dermatologie et vénérologie', y: 315.58},
-		{label: 'Gynécologie obtétrique', y: 351.3},
-		{label:'Ophtalmologie', y: 371.6},
-		{label: 'Pédiatrie', y: 433.3},
-		{label: 'psychiatrie générale', y: 936.4},
-		{label: 'médecin généraliste', y: 999}
-		]
-	},
-	{
-		type: "bar",	
-		name: "Taux de dépassement (%)",
-		color:"SALMON",
-		legendText: "Taux de dépassement",
-		axisYType: "secondary",
-		showInLegend: true,
-		dataPoints:[
-      	{label: 'Gynécologie médicale', y: 38.36},
-		{label:'Chirurgie orthopédique et traumatologie', y: 48.27},
-		{label: 'Anesthésiologie  Réanimation chirurgicale', y: 21.89},
-		{label: 'Pathologie cardiovasculaire', y: 7.81},
-		{label: 'Dermatologie et vénérologie', y: 25.31},
-		{label: 'Gynécologie obtétrique', y: 63.51},
-		{label:'Ophtalmologie', y: 53.66},
-		{label: 'Pédiatrie', y: 22.70},
-		{label: 'psychiatrie générale', y: 21.25},
-		{label: 'médecin généraliste', y: 2.66}    
-		]
-	}]
-});
-chart.render();
-
-function toggleDataSeries2(e) {
-	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-		e.dataSeries.visible = false;
-	}
-	else {
-		e.dataSeries.visible = true;
-	}
-	chart.render();
-}
-
-
 };	
-	   </script>
+</script>
 	   
 <!-- -------------------------------------------GRAPHES INTERACTIFS---------------------------------------------- -->
 	
@@ -1653,17 +1541,17 @@ function toggleDataSeries2(e) {
 <script>	
 	anychart.onDocumentReady(function () {
     var data = [
-      	{'name': 'médecin généraliste', 'value': 26.6, 'low': 0, 'high': 999},
-        {'name': 'psychiatrie générale', 'value': 212.5, 'low': 0, 'high': 936.4},
-        {'name': 'Pédiatrie', 'value': 227.0, 'low': 0, 'high': 433.3},
-        {'name': 'Ophtalmologie', 'value': 536.6, 'low': 0, 'high': 371.6},
-        {'name': 'Gynécologie obtétrique', 'value': 635.1, 'low': 0, 'high': 351.3},
-      	{'name': 'Dermatologie et vénérologie', 'value': 253.1, 'low': 0, 'high': 315.58},
-        {'name': 'Pathologie cardiovasculaire', 'value': 78.1, 'low': 0, 'high': 166.7},
-        {'name': 'Anesthésiologie  Réanimation chirurgicale', 'value': 218.9, 'low': 0, 'high': 152.6},
-        {'name': 'Chirurgie orthopédique et traumatologie', 'value': 482.7, 'low': 0, 'high': 106.6},
-      	{'name': 'Gynécologie médicale', 'value': 383.6, 'low': 0, 'high': 88.9},
-      
+        {'name': 'psychiatrie générale', 'value': 2.125, 'low': 0, 'high': 30.8},
+        {'name': 'Pédiatrie', 'value': 2.270, 'low': 0, 'high': 20.2},
+        {'name': 'Ophtalmologie', 'value': 5.366, 'low': 0, 'high': 16.7},
+		{'name': 'Dermatologie et vénérologie', 'value': 2.531, 'low': 0, 'high': 14.9},
+        {'name': 'Gynécologie obtétrique', 'value': 6.351, 'low': 0, 'high': 14.5},
+        {'name': 'Pathologie cardiovasculaire', 'value': 0.781, 'low': 0, 'high': 7.9},
+        {'name': 'Anesthésiologie  Réanimation chirurgicale', 'value': 2.189, 'low': 0, 'high': 7.6},
+		{'name': 'Gynécologie médicale', 'value': 3.836, 'low': 0, 'high': 6.2},
+        {'name': 'Chirurgie orthopédique et traumatologie', 'value': 4.827, 'low': 0, 'high': 5.9},
+		{'name': 'Rhumatologie', 'value': 2.903, 'low': 0, 'high': 5.4},
+		
     ];
 
     var chart = anychart.polar();
@@ -1690,9 +1578,9 @@ function toggleDataSeries2(e) {
             .titleFormat('{%Name}')
             .format(function () {
                 if (this.value) {
-                    return 'Taux de dépassement : % ' + this.value/10
+                    return 'Taux de dépassement : % ' + this.value*10
                 } else if (this.high) {
-                    return 'Nombre de visites : mm ' + this.high 
+                    return 'Nombre de visites : mn ' + this.high 
                 }
             });
 
@@ -2041,7 +1929,7 @@ anychart.onDocumentReady(function () {
 		{x: 'Ophtalmologie', value: 34.70},
 		{x: 'Génétique médicale', value: 42.17},
 		{x: 'Gynécologie obstétrique', value: 45.18},
-		{x: 'Chirurgie autre', value: 60.00},
+		{x: 'Chirurgie autre', value: 48.80},
 		{x: 'Stomatologie', value: 90.69},
         {x: 'Dentistes', value: 108.377},		
 		{x: 'Chirurgie plastique reconstructrice et esthétique', value: 141.91}

@@ -1,48 +1,48 @@
-"Spe","txdep"
-"1","01-Médecine générale","2.66361066188514"
-"2","02-Anesthésiologie - Réanimation chirurgicale","28.5779204687701"
-"3","03-Pathologie cardio-vasculaire","4.66031386139883"
-"4","05-Dermatologie et vénérologie","23.8787352669676"
-"5","06-Radiodiagnostic et imagerie médicale","5.64491974649105"
-"6","08-Gastro-entérologie et hépatologie","14.413237678978"
-"7","09-Médecine interne","27.5645823679179"
-"8","11-Oto-rhino laryngologie","27.6234993452268"
-"9","12-Pédiatrie","20.8196468924867"
-"10","13-Pneumologie","4.19826117778348"
-"11","14-Rhumatologie","20.4952053304957"
-"12","15-Ophtalmologie","34.7050032357165"
-"13","17-Neuropsychiatrie","14.9860285092611"
-"14","18-Stomatologie","90.6910174927196"
-"15","20-Réanimation médicale","1.27862205313933"
-"16","21-Sages-femmes","1.34013768498172"
-"17","22-Spécialistes en médecine générale avec diplôme","0.356410278234078"
-"18","23-Spécialistes en médecine générale recpnnu par l'ordre","0.28759543934948"
-"19","24-Infirmier","0.0250566994750101"
-"20","26-Masseur-kinésithérapeute","1.91036153946657"
-"21","27-Pédicure podologue","11.3149709817445"
-"22","28-Orthophoniste","0.0414670928661409"
-"23","29-Orthoptiste","0.973128680329379"
-"24","30-Laboratoire","0.014911695886892"
-"25","31-Médecine physique et de réanimation","25.0344116632158"
-"26","32-Neurologie","7.95485952845713"
-"27","33-Psychiatrie générale","19.4306648670265"
-"28","34-Gériatrie","10.6453467275654"
-"29","35-Néphrologie","0.320950694265827"
-"30","37-Anatomie-cytologie-pathologique","4.0644497958478"
-"31","38-Médecin biologiste","0.333848068983982"
-"32","39-Laboratoire polyvalent","0.0381883527953325"
-"33","40-Laboratoire anatomo-pathologiste","0.0709640767544331"
-"34","42-Endocrinologie","30.8126911993294"
-"35","46-Chirurgie plastique reconstructrice et esthétique","141.911364226513"
-"42","70-Gynécologie médicale","29.7415042876041"
-"43","71-Hémathologie","8.55386500433265"
-"44","72-Médecine nucléaire","0.52215332476712"
-"45","73-Oncologie médicale","7.23095963912183"
-"46","74-Oncologie radiothérapique","1.21387132848458"
-"47","75-Psychiatrie de l\"enfant et de l\"adolescent","31.02559136511"
-"48","76-Radiothérapie","0.847782808431272"
-"49","78-Génétique médicale","42.1733323961482"
-"51","99-Spécialité Inconnue","8.69847473438007e-06"
-"52","Chirurgie","48.8020356343211"
-"53","Dentistes","108.377393857103"
-"54","Gynécologie obstétrique","45.1876742374243"
+Spe;txdep;
+35;46-Chirurgie plastique reconstructrice et esthétique; 141,91   
+53;Dentistes; 108,38   
+14;18-Stomatologie; 90,69   
+52;Chirurgie; 48,80   
+54;Gynécologie obstétrique; 45,19   
+49;78-Génétique médicale; 42,17   
+12;15-Ophtalmologie; 34,71   
+47;"75-Psychiatrie de l\enfant et de l\""adolescent"""; 31,03   
+34;42-Endocrinologie; 30,81   
+42;70-Gynécologie médicale; 29,74   
+2;02-Anesthésiologie - Réanimation chirurgicale; 28,58   
+8;11-Oto-rhino laryngologie; 27,62   
+7;09-Médecine interne; 27,56   
+25;31-Médecine physique et de réanimation; 25,03   
+4;05-Dermatologie et vénérologie; 23,88   
+9;12-Pédiatrie; 20,82   
+11;14-Rhumatologie; 20,50   
+27;33-Psychiatrie générale; 19,43   
+13;17-Neuropsychiatrie; 14,99   
+6;08-Gastro-entérologie et hépatologie; 14,41   
+21;27-Pédicure podologue; 11,31   
+28;34-Gériatrie; 10,65   
+43;71-Hémathologie; 8,55   
+26;32-Neurologie; 7,95   
+45;73-Oncologie médicale; 7,23   
+5;06-Radiodiagnostic et imagerie médicale; 5,64   
+3;03-Pathologie cardio-vasculaire; 4,66   
+10;13-Pneumologie; 4,20   
+30;37-Anatomie-cytologie-pathologique; 4,06   
+1;01-Médecine générale; 2,66   
+20;26-Masseur-kinésithérapeute; 1,91   
+16;21-Sages-femmes; 1,34   
+15;20-Réanimation médicale; 1,28   
+46;74-Oncologie radiothérapique; 1,21   
+23;29-Orthoptiste; 0,97   
+48;76-Radiothérapie; 0,85   
+44;72-Médecine nucléaire; 0,52   
+17;22-Spécialistes en médecine générale avec diplôme; 0,36   
+31;38-Médecin biologiste; 0,33   
+29;35-Néphrologie; 0,32   
+18;23-Spécialistes en médecine générale recpnnu par l'ordre; 0,29   
+33;40-Laboratoire anatomo-pathologiste; 0,07   
+22;28-Orthophoniste; 0,04   
+32;39-Laboratoire polyvalent; 0,04   
+19;24-Infirmier; 0,03   
+24;30-Laboratoire; 0,01   
+51;99-Spécialité Inconnue;8,70E-06
