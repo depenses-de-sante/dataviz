@@ -1885,8 +1885,10 @@ anychart.onDocumentReady(function () {
     chart.interactivity().hoverMode('by-x');
 
     // axes titles
-    chart.xAxis().title('Médicament');
     chart.yAxis().title('Nombre de boîtes en mn');
+	
+	var yTitle = chart.yAxis().title();
+	yTitle.fontColor("GRAY");
 
     // set container id for the chart
     chart.container('graphe10');
