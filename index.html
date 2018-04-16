@@ -528,11 +528,11 @@
 
 	  
 	  
-	<div class="col-lg-6 col-xs-12">
+	<div class="col-lg-12 col-xs-12">
             <div class="show-box">
 			
-			<!-- graphe 10 -->
-			<div id="graphe12" style="height: 400px; width: 1050px;" ></div>
+					<!-- graphe 17 -->
+					<div id="graphe17" style="height: 600px; width: 800;"></div>
 			
             </div>
     </div>
@@ -610,6 +610,7 @@
 					<!-- carte dépassement-->
 					<div id="map"></div>
 					
+					<!-- graphe 16 -->
 					<div id="graphe16" style="height: 400px; width: 100%;"></div>
 	
 			
@@ -1440,8 +1441,6 @@ function explodePie (e) {
 
 }
 
-
-<!--graphe 16 -->
 <!--graphe 16 -->
 var chart = new CanvasJS.Chart("graphe16", {
 	backgroundColor: null,
@@ -1481,7 +1480,7 @@ var chart = new CanvasJS.Chart("graphe16", {
 	},
 	data: [{
 		type: "bar",
-		name: "Revenu médian",
+		name: "Revenu médian (€)",
 		legendText: "Revenu médian",
 		showInLegend: true, 
 		dataPoints:[
@@ -1495,7 +1494,7 @@ var chart = new CanvasJS.Chart("graphe16", {
 	},
 	{
 		type: "bar",	
-		name: "Taux de dépassement",
+		name: "Taux de dépassement (%)",
 		legendText: "Taux de dépassement",
 		axisYType: "secondary",
 		showInLegend: true,
@@ -1519,6 +1518,111 @@ function toggleDataSeries(e) {
 	}
 	chart.render();
 }
+
+
+
+
+<!--graphe 17 -->
+var chart = new CanvasJS.Chart("graphe17", {
+	backgroundColor: null,
+	animationEnabled: true,
+	title:{
+		text: "Taux de dépassement parmi les 5 départements ayant le plus faible revenu médian",
+		fontFamily: "calibri",
+		<!-- fontColor: "#FFFFFF",
+		fontSize : 20
+	},	
+	axisX: {
+	labelFontSize: 15,
+	},
+	axisY: {
+		title: "Nombre de visites",
+		titleFontColor: "LIGHTSKYBLUE",
+		lineColor: "LIGHTSKYBLUE",
+		labelFontColor: "LIGHTSKYBLUE",
+		tickColor: "LIGHTSKYBLUE",
+		titleFontSize: 15,
+		labelAngle: 0,
+		prefix: "mm",
+		interval: 200,
+		labelFontSize: 15,
+		gridColor: "white",
+	},
+	axisY2: {
+		title: "Taux de dépassement",
+		titleFontColor: "SALMON",
+		lineColor: "SALMON",
+		labelFontColor: "SALMON",
+		tickColor: "SALMON",
+		titleFontSize: 15,
+		prefix: "%",
+		labelFontSize: 15,
+		maximum : 100,
+		interval : 10,
+	},	
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor:"pointer",
+		itemclick: toggleDataSeries2,
+		fontSize : 15,
+	},
+	data: [{
+		type: "bar",
+		color:"LIGHTSKYBLUE",
+		name: "Nombre de visites (mm)",
+		legendText: "Nombre de visites",
+		showInLegend: true, 
+		dataPoints:[
+      	{label: 'Gynécologie médicale', y: 88.9},
+		{label:'Chirurgie orthopédique et traumatologie', y: 106.6},
+		{label: 'Anesthésiologie  Réanimation chirurgicale', y: 152.6},
+		{label: 'Pathologie cardiovasculaire', y: 166.7},
+		{label: 'Dermatologie et vénérologie', y: 315.58},
+		{label: 'Gynécologie obtétrique', y: 351.3},
+		{label:'Ophtalmologie', y: 371.6},
+		{label: 'Pédiatrie', y: 433.3},
+		{label: 'psychiatrie générale', y: 936.4},
+		{label: 'médecin généraliste', y: 999}
+		]
+	},
+	{
+		type: "bar",	
+		name: "Taux de dépassement (%)",
+		color:"SALMON",
+		legendText: "Taux de dépassement",
+		axisYType: "secondary",
+		showInLegend: true,
+		dataPoints:[
+      	{label: 'Gynécologie médicale', y: 38.36},
+		{label:'Chirurgie orthopédique et traumatologie', y: 48.27},
+		{label: 'Anesthésiologie  Réanimation chirurgicale', y: 21.89},
+		{label: 'Pathologie cardiovasculaire', y: 7.81},
+		{label: 'Dermatologie et vénérologie', y: 25.31},
+		{label: 'Gynécologie obtétrique', y: 63.51},
+		{label:'Ophtalmologie', 'value': 53.66},
+		{label: 'Pédiatrie', y: 22.70},
+		{label: 'psychiatrie générale', y: 21.25},
+		{label: 'médecin généraliste', y: 2.66}    
+		]
+	}]
+});
+chart.render();
+
+function toggleDataSeries2(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+
+
+
 
 
 
