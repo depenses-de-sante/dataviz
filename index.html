@@ -674,9 +674,9 @@
       <!-- Container Starts -->
       <div class="container">
         <div class="section-header">          
-          <h2 class="section-title">Quels médecins allons nous voir le plus ?</h2>
+          <h2 class="section-title" style="color:white;">Quels médecins allons nous voir le plus ?</h2>
           <hr class="lines">
-          <p class="section-subtitle"> Les médecins généralistes comptabilisent 252.3 millions de visites (taux dep 2.9%)<br>Qu'en est-il des autres ?</p>
+          <p class="section-subtitle" style="color:white;"> Les médecins généralistes comptabilisent 252.3 millions de visites (taux dep 2.9%)<br>Qu'en est-il des autres ?</p>
         </div>	
 
 	  
@@ -1722,6 +1722,7 @@ function toggleDataSeries(e) {
     chart.title()
             .enabled(true)
             .text('Top 10 des médecins spécialistes les plus consultés en 2017')
+			.fontColor("white")
             .padding({bottom: 20});
 
     // setup chart appearance settings
@@ -1781,6 +1782,7 @@ function toggleDataSeries(e) {
             .position('center-bottom')
             .align('left')
             .itemsSpacing(5)
+			.fontColor("white")
             .margin({'top': -30});
 
     // create ploygon series
