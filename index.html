@@ -1217,7 +1217,7 @@
       <div class="contact-form">
         <div class="container">
           <div class="row">     
-            <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="col-lg-5 col-sm-5 col-xs-12">
 
 				
 			
@@ -1233,13 +1233,17 @@
 				
 				
               </div>  
-            <div class="col-lg-8 col-sm-8 col-xs-12">
+            <div class="col-lg-7 col-sm-7 col-xs-12">
               <div class="contact-us">
                 <h3>Nous contacter</h3>
                 <div class="contact-address">
                   <!-- <p class="phone">Phone: <span>(+94 123 456 789)</span></p> -->
-                  <p class="email">E-mail: <span> <a href="mailto:amelie.segard@ensae.fr" style="color:white";>amelie.segard@ensae.fr</a></span></p>
-                </div>
+                  <p class="email"><i class="lnr lnr-envelope" style="color:#fff;font-size:15px"></i> <span> <a href="mailto:emilie.cupillard@ensae.fr" style="color:white";>emilie.cupillard@ensae.fr</a></span></p>
+                  <p class="email"><i class="lnr lnr-envelope" style="color:#fff;font-size:15px"></i> <span> <a href="mailto:hugo.bailly@ensae.fr" style="color:white";>hugo.bailly@ensae.fr</a></span></p>
+                  <p class="email"><i class="lnr lnr-envelope" style="color:#fff;font-size:15px"></i> <span> <a href="mailto:leila.fardeau@ensae.fr" style="color:white";>leila.fardeau@ensae.fr</a></span></p>
+                  <p class="email"><i class="lnr lnr-envelope" style="color:#fff;font-size:15px"></i> <span> <a href="mailto:amelie.segard@ensae.fr" style="color:white";>amelie.segard@ensae.fr</a></span></p>
+                                
+				</div>
 				</div>
 				
 			
@@ -1710,7 +1714,7 @@ function toggleDataSeries(e) {
     // set title settings
     chart.title()
             .enabled(true)
-            .text('Top 10 des médecins les plus visités')
+            .text('Top 10 des médecins spécialistes les plus consultés en 2017')
             .padding({bottom: 20});
 
     // setup chart appearance settings
@@ -1732,7 +1736,7 @@ function toggleDataSeries(e) {
                 if (this.value) {
                     return 'Taux de dépassement : ' + this.value*10 +' %'
                 } else if (this.high) {
-                    return 'Nombre de visites : ' + this.high +' millions'
+                    return 'Nombre de consultations : ' + this.high +' millions'
                 }
             });
 
