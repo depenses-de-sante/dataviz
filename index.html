@@ -219,6 +219,8 @@
 	<p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <br> </p>
 	<h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><center> <span style="color:BLACK; font-size:20px; font-weight:bold">  Les faits marquants... </span> </center> </h3>
 	
+	<p><br></p>
+	
 	<div class="container">
       <div class="row"> 
         <div class="col-md-4 col-sm-6">
@@ -263,6 +265,7 @@
             </div>
     </div>
 	
+	<p><br></p>
 	
 	<p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <br> </p>
 	
@@ -759,25 +762,14 @@
 	
 	  <div class="container">
           <div class="row">     
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-	
-              <div>
-                <div>
-					<!-- graphe 16 -->
-					<div id="graphe16" style="height: 400px; width: 100%;"></div>
-					
-                </div>
-				</div>
-
-            </div>  
-			  
-			  
-            <div class="col-lg-6 col-sm-6 col-xs-12">
+		  
+		  
+		    <div class="col-lg-6 col-sm-6 col-xs-12">
 			
               <div>
 				<!-- <h3>titre</h3> -->
                 <div>
-                  <p> <br> <br> texte 4 <br> bli bla blo bli bla blo bli bla blo bli bla blo bli bla blo</p>
+                  <p> texte 6 <br> bli bla blo bli bla blo bli bla blo bli bla blo bli bla blo</p>
 				  <!-- carte dépassement-->
 				  <div id="map"></div>
 					
@@ -785,6 +777,22 @@
 			  </div>
 				
             </div>
+		  
+		  
+		  
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+	
+              <div>
+                <div>
+					<!-- graphe 16 -->
+					<div id="graphe16" style="height: 300px; width: 100%;"></div>
+					
+                </div>
+				</div>
+
+            </div>  
+			  
+			 
 			
           </div>
         </div>
@@ -1616,11 +1624,12 @@ var chart = new CanvasJS.Chart("graphe16", {
 		text: "Taux de dépassement parmi les 5 départements ayant le plus faible revenu médian",
 		fontFamily: "calibri",
 		<!-- fontColor: "#FFFFFF",
-		fontSize : 20,
+		fontSize : 15,
 		fontColor: "#FFFFFF",
 	},
 	axisX: {
 		labelFontColor: "#FFFFFF",
+		labelFontSize: 12,
 	},
 	axisY: {
 		title: "Revenu médian",
@@ -1628,7 +1637,7 @@ var chart = new CanvasJS.Chart("graphe16", {
 		lineColor: "#4F81BC",
 		labelFontColor: "#4F81BC",
 		tickColor: "#4F81BC",
-		titleFontSize: 15,
+		titleFontSize: 12,
 		labelAngle: 0,
 		suffix: " €",
 		interval: 5000
@@ -1639,10 +1648,11 @@ var chart = new CanvasJS.Chart("graphe16", {
 		lineColor: "#C0504E",
 		labelFontColor: "#C0504E",
 		tickColor: "#C0504E",
-		titleFontSize: 15,
+		titleFontSize: 12,
 		suffix: " %",
 		interval: 5,
 	},	
+	dataPointWidth: 13,
 	toolTip: {
 		shared: true
 	},
@@ -1650,6 +1660,7 @@ var chart = new CanvasJS.Chart("graphe16", {
 		cursor:"pointer",
 		itemclick: toggleDataSeries,
 		fontColor: "#FFFFFF",
+		fontSize: 12,
 	},
 	data: [{
 		type: "bar",
