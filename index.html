@@ -564,7 +564,7 @@
             <div class="show-box">
 			
 			<!-- graphe 11 -->
-			<div id="graphe11" style="height: 500px; width: 1250px;" ></div>
+			<div id="graphe11" style="height: 600px; width: 1250px;" ></div>
 			
             </div>
      </div>
@@ -1219,7 +1219,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	backgroundColor: null,
 	title:{
-		text: "Montant des dépenses en 2016 par groupe",
+		text: "Montant des dépenses de médicament en 2016 par catégorie de prix unitaire",
 		fontFamily: "calibri",
 		fontColor: "#FFFFFF",
 		fontSize : 20,
@@ -1235,25 +1235,25 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	axisY:{
 		title: "Montant",
-		valueFormatString:"€#0mn",
+		valueFormatString:"€#0 mn",
 		gridColor: "#B6B1A8",
 		tickColor: "#B6B1A8",
 		labelFontColor: "#FFFFFF",
 		titleFontColor: "#FFFFFF",
 		titleFontSize: 15,
-		gridColor: "white"
-
+		gridColor: "white",
+		interval: 5000
 		
 	},
 	
 	axisY2: {
-		title: "Percent",
-		suffix: "%",
+		title: "Part du nombre de boîtes",
+		suffix: " %",
 		gridThickness: 0,
 		tickColor: "#FFFFFF",
 		labelFontColor: "#FFFFFF",
 		titleFontColor: "#FFFFFF",
-		titleFontSize: 15
+		titleFontSize: 15,
 	},
 	
 	legend: {
@@ -1262,7 +1262,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
     },
 	toolTip: {
 		shared: true,
-		<!-- content: " {name}: € {y} mn " -->
+		<!--content: " {name}: € {y} mn " 
 	},
 	dataPointWidth: 70,
 	data: [{
@@ -1270,30 +1270,28 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		showInLegend: true,
 		color: "#87CEEB",
 		name: "remboursé",
+		yValueFormatString: "0.##\" millions\"",
 		dataPoints: [
-			{ y: 1433.7,  label: "[0,3[" },
-			{ y: 1076.3,   label: "[3,6[" },
-			{ y: 1661.2,  label: "[6,10[" },
-			{ y: 5198.4,  label: "[10,50[" },
-			{ y: 9221.6,  label: ">50" }
+			{ y: 1433.7,  label: "de 0 à 3 €" },
+			{ y: 1076.3,   label: "de 3 à 6 €" },
+			{ y: 1661.2,  label: "de 6 à 10 €" },
+			{ y: 5198.4,  label: "de 10 à 50 €" },
+			{ y: 9221.6,  label: "au delà de 50 €" }
 		]
 		},
 		{        
 			type: "stackedColumn",
 			showInLegend: true,
 			name: "non remboursé",
+			yValueFormatString: "0.##\" millions\"",
 			color: "#FA8072",
 			dataPoints: [
-				{ y: 819.8,  label: "[0,3[" },
-				{ y: 524.3,  label: "[3,5[" },
-				{ y: 569.1,  label: "[5,10[" },
-				{ y: 1343.5,  label: "[10,50[" },
-				{ y: 572.9,  label: ">50" }
+				{ y: 819.8,  label: "de 0 à 3 €" },
+				{ y: 524.3,  label: "de 3 à 6 €" },
+				{ y: 569.1,  label: "de 6 à 10 €" },
+				{ y: 1343.5,  label: "de 10 à 50 €" },
+				{ y: 572.9,  label: "au delà de 50 €" }
 		]
-
-		
-		
-		
 	}]
 });
 chart.render();                               
@@ -1316,11 +1314,11 @@ function createPareto(){
 			name: "nb boîte",
 			showInLegend: true,
 			dataPoints: [
-				{ y: 57.58,  label: "[0,3[" },
-				{ y: 15.59,  label: "[3,6[" },
-				{ y: 12.61,  label: "[6,10[" },
-				{ y: 11.92,  label: "[10,50[" },
-				{ y: 2.30,  label: ">50" }
+				{ y: 57.58,  label: "de 0 à 3 €" },
+				{ y: 15.59,  label: "de 3 à 6 €" },
+				{ y: 12.61,  label: "de 6 à 10 €" },
+				{ y: 11.92,  label: "de 10 à 50 €" },
+				{ y: 2.30,  label: "au delà de 50 €" }
 	]
 	}]; 
 	
@@ -1346,10 +1344,10 @@ function createPareto(){
 	<!-- });
 	
 	console.log(dps);
-	chart.addTo("data", {type:"splineArea", name: "% boîtes",showInLegend: true, color: "rgba(40,175,101,0.6)", axisYType: "secondary", yValueFormatString: "0.##\"%\"", indexLabel: "{y}", indexLabelFontColor: "rgba(40,175,101,0.6)", dataPoints: dps});
+	chart.addTo("data", {type:"splineArea", name: "% boîtes",showInLegend: true, color: "rgba(40,175,101,0.6)", axisYType: "secondary", yValueFormatString: "0.##\" %\"", indexLabel: "{y}", indexLabelFontColor: "rgba(40,175,101,0.6)", dataPoints: dps});
 	chart.axisY[0].set("maximum", yTotal, false);
 	chart.axisY2[0].set("maximum", 65, false );
-	chart.axisY2[0].set("interval", 25 );
+	chart.axisY2[0].set("interval", 20 );
 }
 
 
@@ -1470,7 +1468,7 @@ var chart = new CanvasJS.Chart("graphe16", {
 		tickColor: "#4F81BC",
 		titleFontSize: 15,
 		labelAngle: 0,
-		prefix: "€",
+		suffix: " €",
 		interval: 5000
 	},
 	axisY2: {
@@ -1480,7 +1478,8 @@ var chart = new CanvasJS.Chart("graphe16", {
 		labelFontColor: "#C0504E",
 		tickColor: "#C0504E",
 		titleFontSize: 15,
-		prefix: "%"
+		suffix: " %",
+		interval: 5,
 	},	
 	toolTip: {
 		shared: true
@@ -1491,9 +1490,10 @@ var chart = new CanvasJS.Chart("graphe16", {
 	},
 	data: [{
 		type: "bar",
-		name: "Revenu médian (€)",
+		name: "Revenu médian",
 		legendText: "Revenu médian",
 		showInLegend: true, 
+		yValueFormatString: "0.##\" €\"",
 		dataPoints:[
           	{ label: "Pyrénées orientales", y: 17999 },
             { label: "Creuse", y: 17984 },
@@ -1505,10 +1505,11 @@ var chart = new CanvasJS.Chart("graphe16", {
 	},
 	{
 		type: "bar",	
-		name: "Taux de dépassement (%)",
+		name: "Taux de dépassement",
 		legendText: "Taux de dépassement",
 		axisYType: "secondary",
 		showInLegend: true,
+		yValueFormatString: "0.##\" %\"",
 		dataPoints:[
 			{ label: "Pyrénées orientales", y: 4.7 },
             { label: "Creuse", y: 4.1 },
@@ -1545,10 +1546,10 @@ function toggleDataSeries(e) {
         {'name': 'Ophtalmologie', 'value': 5.366, 'low': 0, 'high': 16.7},
 		{'name': 'Dermatologie et vénérologie', 'value': 2.531, 'low': 0, 'high': 14.9},
         {'name': 'Gynécologie obtétrique', 'value': 6.351, 'low': 0, 'high': 14.5},
-        {'name': 'Pathologie cardiovasculaire', 'value': 0.781, 'low': 0, 'high': 7.9},
+		{'name': 'Pathologie cardiovasculaire', 'value': 0.781, 'low': 0, 'high': 7.9},
         {'name': 'Anesthésiologie  Réanimation chirurgicale', 'value': 2.189, 'low': 0, 'high': 7.6},
 		{'name': 'Gynécologie médicale', 'value': 3.836, 'low': 0, 'high': 6.2},
-        {'name': 'Chirurgie orthopédique et traumatologie', 'value': 4.827, 'low': 0, 'high': 5.9},
+        {'name': 'Chirurgie orthopédique et traumatologie', 'value': 4.82, 'low': 0, 'high': 5.9},
 		{'name': 'Rhumatologie', 'value': 2.903, 'low': 0, 'high': 5.4},
 		
     ];
@@ -1575,13 +1576,16 @@ function toggleDataSeries(e) {
     // format chart tooltip
     chart.tooltip().displayMode('union')
             .titleFormat('{%Name}')
+			.format("{%Value}{numDecimals:3}")
             .format(function () {
                 if (this.value) {
-                    return 'Taux de dépassement : % ' + this.value*10
+                    return 'Taux de dépassement : ' + this.value*10 +' %'
                 } else if (this.high) {
-                    return 'Nombre de visites : mn ' + this.high 
+                    return 'Nombre de visites : ' + this.high +' millions'
                 }
             });
+
+
 
     // set chart grid settings
     chart.yGrid().fill('#fefefe');
@@ -1756,7 +1760,10 @@ anychart.onDocumentReady(function() {
   });
 
   // set title for Y-axis
-  chart.yAxis(0).title('Nombre de consommants');
+  chart.yAxis(0).title('Nombre de consommants (millions)');
+  
+  var yTitle = chart.yAxis().title();
+ yTitle.fontColor('GRAY');
 
   // allow labels to overlap
   chart.xAxis(0).overlapMode('allow-overlap');
@@ -1874,8 +1881,8 @@ anychart.onDocumentReady(function () {
 			.anchor('left-center')
             .offsetX(5)
             .offsetY(0)
-            .format(' {%Value}{groupsSeparator: }');
-
+            .format(' {%Value}{groupsSeparator: } millions');
+			
     // set scale minimum
     chart.yScale().minimum(0);
 	
@@ -1975,7 +1982,7 @@ anychart.onDocumentReady(function () {
     chart.yAxis(false);
 
     // set value prefix for tooltip
-    chart.tooltip().valuePrefix('%');
+    chart.tooltip().format('{%Value}{groupsSeparator: } %');
 
     // set x-scale
     chart.xScale('ordinal');
@@ -2084,7 +2091,7 @@ var makeBarWithBar = function (gauge, radius, i, width, without_stroke) {
     if (without_stroke) {
         stroke = null;
         gauge.label(i)
-                .text(names[i] + ', <span style="">' + data[i] + ' m</span>')// color: #7c868e
+                .text(names[i] + ', <span style="">' + data[i] + ' mille</span>')// color: #7c868e
                 .useHtml(true);
         gauge.label(i)
                 .hAlign('center')
@@ -2145,6 +2152,11 @@ anychart.onDocumentReady(function () {
             .hAlign('center')
             .padding(0)
             .margin([0, 0, 20, 0]);
+			
+			
+			
+	gauge.tooltip()
+		.format(' {%Value}  mille');
 
     gauge.container('graphe13');
     gauge.draw();
