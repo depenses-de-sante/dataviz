@@ -622,13 +622,6 @@
                   </div>
 				 
 
-
-				 
-				  
-	<p class="section-subtitle"><i class="lnr lnr-users" style="color:#fff;font-size:40px"></i> Les <span style="font-size:20px; color:red; font-weight:bold; font-style:italic">dépenses</span> de santé «les plus remboursées» sont-elles celles qui «coûtent le plus» ? <br> celles qui impliquent le plus de dépenses en valeur absolue pour la sécu</p>
-        
-		
-		
 				  
               </div>
             </div>
@@ -637,6 +630,36 @@
 		  </div>
 		
       </div>
+	  
+	  
+	  
+	  <div class="container">
+          <div class="row">     
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+	
+              <div>
+                <div>
+					<!-- equivalences -->
+	<p class="section-subtitle"><i class="lnr lnr-database" style="color:#fff;font-size:30px"></i>      Le prix de <span style="font-size:20px; color:red; font-weight:bold">1</span> boîte de HUMIRA = Le prix de <span style="font-size:20px; color:red; font-weight:bold">1074</span> boîtes de dopliprane </p>
+	<p class="section-subtitle"><i class="lnr lnr-cart" style="color:#fff;font-size:30px"></i>      Pour <span style="font-size:20px; color:red; font-weight:bold">1</span> boîte de HUMIRA vendue = <span style="font-size:20px; color:red; font-weight:bold">471</span> boîtes de dopliprane sont vendues </p>
+         
+
+                </div>
+				</div>
+
+            </div>  
+			  
+
+            </div>
+			
+          </div>
+        </div>
+	  
+	  
+	  
+	  
+	  
+	  
 	 	  
 	  
     </section>
@@ -726,7 +749,7 @@
 		  <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <br> </p>
           <hr class="lines wow zoomIn" data-wow-delay="0.3s" >
 		  <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <br> </p>
-          <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> Taux dépassement en fonction du département</h3>
+          <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <span style="color:white";>Taux dépassement en fonction du département</span></h3>
 	  </div>
 	
 	  <div class="container">
@@ -1215,7 +1238,7 @@
                 <h3>Nous contacter</h3>
                 <div class="contact-address">
                   <!-- <p class="phone">Phone: <span>(+94 123 456 789)</span></p> -->
-                  <p class="email">E-mail: <span> <a href="mailto:amelie.segard@ensae.fr">amelie.segard@ensae.fr</a></span></p>
+                  <p class="email">E-mail: <span> <a href="mailto:amelie.segard@ensae.fr" style="color:white";>amelie.segard@ensae.fr</a></span></p>
                 </div>
 				</div>
 				
@@ -1581,11 +1604,15 @@ var chart = new CanvasJS.Chart("graphe16", {
 		text: "Taux de dépassement parmi les 5 départements ayant le plus faible revenu médian",
 		fontFamily: "calibri",
 		<!-- fontColor: "#FFFFFF",
-		fontSize : 20
-	},	
+		fontSize : 20,
+		fontColor: "#FFFFFF",
+	},
+	axisX: {
+		labelFontColor: "#FFFFFF",
+	},
 	axisY: {
 		title: "Revenu médian",
-		titleFontColor: "#4F81BC",
+		titleFontColor: "#FFFFFF",
 		lineColor: "#4F81BC",
 		labelFontColor: "#4F81BC",
 		tickColor: "#4F81BC",
@@ -1596,7 +1623,7 @@ var chart = new CanvasJS.Chart("graphe16", {
 	},
 	axisY2: {
 		title: "Taux de dépassement",
-		titleFontColor: "#C0504E",
+		titleFontColor: "#FFFFFF",
 		lineColor: "#C0504E",
 		labelFontColor: "#C0504E",
 		tickColor: "#C0504E",
@@ -1609,7 +1636,8 @@ var chart = new CanvasJS.Chart("graphe16", {
 	},
 	legend: {
 		cursor:"pointer",
-		itemclick: toggleDataSeries
+		itemclick: toggleDataSeries,
+		fontColor: "#FFFFFF",
 	},
 	data: [{
 		type: "bar",
