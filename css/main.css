@@ -173,8 +173,8 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 
 .btn-common:hover {
   color: #fff;
-  background: #33b391;
-  border-color: #33b391;
+  background: #75A5DA;
+  border-color: #75A5DA;
   transition: all .50s ease-in-out;
   -moz-transition: all .50s ease-in-out;
   -webkit-transition: all .50s ease-in-out;
