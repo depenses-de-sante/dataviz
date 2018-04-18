@@ -24,6 +24,7 @@
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115045625-1"></script>
+<script src="js/jquery.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -97,9 +98,103 @@
         {
 		text-align: center;
         }
-        </style>
-		
     </style>
+		
+ <!-- CSS DU QUIZZ-->
+ <style>
+    #info {
+          margin-top: 50px;
+      }
+      
+      #deptinfo {
+          margin-top: 30px;
+      }
+      
+      .department {
+          cursor: pointer;
+          stroke: black;
+          stroke-width: .5px;
+      }
+      
+      .department:hover {
+          stroke-width: 2px;
+      }
+      
+      div.tooltip {
+          position: absolute;
+          opacity:0.8;
+          z-index:1000;
+          text-align:left;
+          border-radius:4px;
+          -moz-border-radius:4px;
+          -webkit-border-radius:4px;
+          padding:8px;
+          color:#fff;
+          background-color:#000;
+          font: 12px sans-serif;
+          max-width: 300px;
+          height: 60px;
+      }
+      
+      #svg {
+          display: block;
+          margin: auto;
+      }
+.fenetre {
+  position:relative;
+  display:block;
+  width: 100%;
+  margin: 10px auto 30px auto;
+}
+.infographie {
+  display:block;
+  width : 100%;
+  padding : 0px 0px ;
+  margin : 20px 0px 0px 0px ;
+  filter: blur(15px) grayscale(80%) opacity(40%);
+  -webkit-filter: blur(15px) grayscale(80%) opacity(40%);
+
+  -webkit-transition : -webkit-filter 2s ;
+  -moz-transition : filter 2s ;
+  -o-transition : -webkit-filter 2s ;
+
+}
+
+.fenetreQuestion {
+  display:block;
+  position:absolute;
+  top : 10%;
+  left: 15%;
+  width: 70%;
+  font-family: 'droid-bold';
+
+  -webkit-transition : -webkit- filter 2s ;
+  -moz-transition :  filter 2s ;
+  -o-transition : -webkit- filter 2s ;
+  
+}
+.question{
+  text-align:center;
+  margin : 20px auto 20px auto;
+  width:70%;
+}
+.reponseV,.reponseF {
+  width: 50%;
+  color : rgb(255, 250, 250);
+  border-radius: 25px;
+  background: rgba(2, 40, 48, 0.685);
+  padding: 10px 15px ;
+  margin: 20px auto 10px auto ;
+  text-align:center;
+}
+
+.reponseV:hover,.reponseF:hover {
+  font-size: 0.9em ;
+  cursor:pointer;
+}
+
+
+</style>
 
 	
   </head>
@@ -316,38 +411,49 @@
           <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.1s"> <span style="font-size:20px; font-weight:bold; color:#005DA8">  Focus : les médicaments du système génito-urinaire et hormones </span> <br><br></h3>
    </div>
   
-  
 
-		
+
+<div id="quizz1" class="fenetre">
+    <div class="infographie" > 
+     <!-- Début rep -->		
 		<div class="container">
-          <div class="row">     
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-	
-              <div>
-                <!-- <h3>titre</h3> -->
-                <div> <br> <br> <br>
-                  <p>On remarque que les femmes consomment bien plus de médicaments destinés au système génito-urinaire et de médicaments hormonaux que les hommes. En effet, les femmes ont, par exemple recours à des moyens de contraception hormonaux tels que la pilule contraceptive. Cependant, cette différence est due au fait qu'elles en consomment bien plus avant 60 ans puisqu'après 60 ans, ce sont les hommes qui en consomment davantage.</p>
-                </div>
-				</div>
+        <div class="row">     
+          <div class="col-lg-6 col-sm-6 col-xs-12">
 
-            </div>  
-			  
-			  
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-			
-              <div>
-                <div>
-					<!-- graphe 7 interactif-->
-					<div id="graphe14" style="height: 300px; width: 500px;"></div></center> 
-					
+            <div>
+              <!-- <h3>titre</h3> -->
+              <div> <br> <br> <br>
+                <p>On remarque que les femmes consomment bien plus de médicaments destinés au système génito-urinaire et de médicaments hormonaux que les hommes. En effet, les femmes ont, par exemple recours à des moyens de contraception hormonaux tels que la pilule contraceptive. Cependant, cette différence est due au fait qu'elles en consomment bien plus avant 60 ans puisqu'après 60 ans, ce sont les hommes qui en consomment davantage.</p>
+              </div>
+      </div>
 
-                </div>
-				</div>
-				
-            </div>
-			
+          </div>  
+      
+      
+          <div class="col-lg-6 col-sm-6 col-xs-12">
+    
+            <div>
+              <div>
+        <!-- graphe 7 interactif-->
+        <div id="graphe14" style="height: 300px; width: 500px;"></div></center> 
+        
+
+              </div>
+      </div>
+      
           </div>
+    
         </div>
+    </div>
+<!-- Fin rep -->   
+    </div>
+    <div class="fenetreQuestion">	
+        <div class="question">Qui consomme le plus de médicaments du système génito-urinaire et hormonaux ?</div>
+        <div class="reponseF">Les hommes</div>
+        <div class="reponseV">Les femmes</div>
+    </div>
+</div>
+</body> 
 					
 					
 					
@@ -361,9 +467,11 @@
 		  <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <br> </p>
           <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.1s"> <span style="font-size:20px; font-weight:bold; color:#005DA8"> Focus : les vaccins les plus consommés en France </span></h3>
   </div>
-			  
-			 
-		<div class="container">
+
+<div id="quizz2" class="fenetre">
+      <!--    <div class="commentaire"></div> -->		  
+<div class="infographie" >
+      <div class="container">
           <div class="row">     
             <div class="col-lg-6 col-sm-6 col-xs-12">
 	
@@ -394,6 +502,14 @@
 			
           </div>
         </div>
+  </div>
+  <div class="fenetreQuestion">	
+      <div class="question">Quels sont les vaccins les plus consommés en France ?</div>
+      <div class="reponseV">Les vaccins contre la grippe </div>
+      <div class="reponseF">Les vaccins contre la rougeole </div>
+  </div>
+</div>			 
+
 		
 		
 		
@@ -404,41 +520,54 @@
 		  <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"> <br> </p>
           <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.1s"> <span style=" font-size:20px; font-weight:bold; color:#005DA8"> Focus sur les médicaments génériques </span></h3>
   </div>
-		
-		<div class="container">
-          <div class="row">     
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-	
-              <div>
-				<!-- <h3>titre</h3> -->
-                <div>
-                  <p><br> <br>
-                    L'usage des médicaments génériques a fait l'objet de plusieurs campagnes incitant les personnes à les demander à leur pharmacien lorsqu'ils sont disponibles. On peut donc se demander quelle est la proportion de génériques vendus pour les médicaments pour lesquels le choix se pose ! Eh bien en moyenne en France, le générique est choisi 3 fois sur 4 (lorsqu'il est disponible bien sûr).
-                  </p>
 
-					<!-- <div style="color:green";>
-						<p><br>- [idée reçue]
-					</div>				  
-        -->
+  
+  <div id="quizz3" class="fenetre">
+      <!--    <div class="commentaire"></div> -->
+          <div class="infographie" >
+          		<div class="container">
+                  <div class="row">     
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+          
+                      <div>
+                <!-- <h3>titre</h3> -->
+                        <div>
+                          <p><br> <br>
+                            L'usage des médicaments génériques a fait l'objet de plusieurs campagnes incitant les personnes à les demander à leur pharmacien lorsqu'ils sont disponibles. On peut donc se demander quelle est la proportion de génériques vendus pour les médicaments pour lesquels le choix se pose ! Eh bien en moyenne en France, le générique est choisi 3 fois sur 4 (lorsqu'il est disponible bien sûr).
+                          </p>
+        
+                  <!-- <div style="color:green";>
+                    <p><br>- [idée reçue]
+                  </div>				  
+                -->
+                        </div>
                 </div>
-				</div>
-
-            </div>  
-			  
-			  
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-			
-              <div>
-                <div>
-                  	<!-- graphe 15 interactif-->
-					<div id="graphe15" style="height: 370px; width: 100%;"></div>
+        
+                    </div>  
+                
+                
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+              
+                      <div>
+                        <div>
+                            <!-- graphe 15 interactif-->
+                  <div id="graphe15" style="height: 370px; width: 100%;"></div>
+                        </div>
                 </div>
-				</div>
-				
-            </div>
-			
+                
+                    </div>
+              
+                  </div>
+                </div>    
           </div>
-        </div>
+          <div class="fenetreQuestion">	
+              <div class="question"> Parmi les analgésiques, quelle est la part des médicaments génériques vendus ?</div>
+              <div class="reponseF">1/3</div>
+              <div class="reponseF">1/2</div>
+              <div class="reponseV">3/4</div>
+          </div>
+      </div>
+
 			 
 		
 		
@@ -454,48 +583,59 @@
           <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.1s"> <span style="font-size:20px; font-weight:bold; color:#005DA8"> Focus sur la consommation d'antidépresseurs en France </span></h3>
     </div>
       
-	
-	<div class="container">
-          <div class="row">     
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-	
-              <div>
-                <div>
-					<!-- graphe carte numero 2 : map2 -->
-					<div id="map2" ></div>
-
-                </div>
-				</div>
-
-            </div>  
-			  
-			  
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-			
-              <div>
-        <!-- <h3>titre</h3> -->
-        <div style="margin-left:100px ;">
-        <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><center> <span style="color:BLACK; font-size:18px; font-weight:bold">  Que retenir ? </span> </center> </h3>
-        <div>
-           Si l'on regarde la répartition géographique, c'est en Provence - Alpes - Côte d'Azur que l'on consomme le plus d'antidépresseurs par personne (avec 43,105 boîtes par an et par habitant). Viennent ensuite les régions Hauts de France et Grand-Est. 
-          <br> A l'inverse, c'est en Île-de-France que le nombre de boîtes d'antidépresseurs par an et par habitant est le plus faible. 
-        </div>
-           
-
-          <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><center> <span style="color:BLACK; font-size:18px; font-weight:bold">  Quelques infos en plus... </span> </center> </h3>
-    
-					<div style="color:rgb(60, 8, 73)";>
-						<br> Si comme nous l'avons dit précédemment, les français ne sont pas les plus grands consommateurs d'antidépresseurs en France, nous sommes tout de même en 3ème position en Europe !
-						<br> Ces dernières années, le nombre de consommateurs d'antidepresseurs est stable en France (environ 8.4% de la population). En revanche, le nombre de boîtes par consommateur a, quant à lui augmenté ! </p>
-					</div>
-					
-                </div>
-				</div>
-				
+    <div id="quizz4" class="fenetre">
+        <!--    <div class="commentaire"></div> -->
+            <div class="infographie" >
+                <div class="container">
+                    <div class="row">     
+                      <div class="col-lg-6 col-sm-6 col-xs-12">
+            
+                        <div>
+                          <div>
+                    <!-- graphe carte numero 2 : map2 -->
+                    <div id="map2" ></div>
+          
+                          </div>
+                  </div>
+          
+                      </div>  
+                  
+                  
+                      <div class="col-lg-6 col-sm-6 col-xs-12">
+                
+                        <div>
+                  <!-- <h3>titre</h3> -->
+                  <div style="margin-left:100px ;">
+                  <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><center> <span style="color:BLACK; font-size:18px; font-weight:bold">  Que retenir ? </span> </center> </h3>
+                  <div>
+                     Si l'on regarde la répartition géographique, c'est en Provence - Alpes - Côte d'Azur que l'on consomme le plus d'antidépresseurs par personne (avec 43,105 boîtes par an et par habitant). Viennent ensuite les régions Hauts de France et Grand-Est. 
+                    <br> A l'inverse, c'est en Île-de-France que le nombre de boîtes d'antidépresseurs par an et par habitant est le plus faible. 
+                  </div>
+                     
+          
+                    <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"><center> <span style="color:BLACK; font-size:18px; font-weight:bold">  Quelques infos en plus... </span> </center> </h3>
+              
+                    <div style="color:rgb(60, 8, 73)";>
+                      <br> Si comme nous l'avons dit précédemment, les français ne sont pas les plus grands consommateurs d'antidépresseurs en France, nous sommes tout de même en 3ème position en Europe !
+                      <br> Ces dernières années, le nombre de consommateurs d'antidepresseurs est stable en France (environ 8.4% de la population). En revanche, le nombre de boîtes par consommateur a, quant à lui augmenté ! </p>
+                    </div>
+                    
+                          </div>
+                  </div>
+                  
+                      </div>
+                
+                    </div>
+                  </div>    
             </div>
-			
-          </div>
-        </div>
+            <div class="fenetreQuestion">	
+                <div class="question"> Dans quelle région consomme-t-on le plus d'antidépresseurs ?</div>
+                <div class="reponseF">En Île-de-France  </div>
+                <div class="reponseV">En Provence - Alpes - Côte d'Azur</div>
+                <div class="reponseF">Dans les Hauts de France </div>
+            </div>
+        </div>	
+
 	
 
     </section>
@@ -2576,3 +2716,69 @@ anychart.onDocumentReady(function () {
         .attr("class", "tooltip")               
         .style("opacity", 0);    
 </script>    
+
+
+<!-- JS pour le quizz -->
+<script type="text/javascript">
+  (function(){
+  //-------------------------------------------------------------
+  // Début du script        
+      var clics = document.querySelectorAll('.fenetreQuestion'),  // Récupération de toutes les fenêtres de question
+          Reponse = {                                               // Création d'un prototype contenant la fenêtre mère parente et le clic
+          init:function(bloc,result){
+              this.fenetre = bloc ;
+              this.result = result ;
+          }
+          },
+          reponse = Object.create(Reponse),                       // Création de l'objet réponse
+          infogra, question,                               // Création des variables utilisées dans la boucle (comm)
+          action = function(){
+              question.style.WebkitFilter = 'opacity(0%)' ;     // On désaffiche la fenêtre question
+              infogra.style.WebkitFilter = 'none' ;            // On enlève le flous sur les infographies
+           //   comm.style.WebkitFilter = 'none' ;
+              
+              question.style.filter = 'opacity(0%)' ;     // On désaffiche la fenêtre question
+              infogra.style.filter = 'none' ;            // On enlève le flous sur les infographies
+           //   comm.style.filter = 'none' ;
+              
+              question.style.zIndex = '-1' ;  // On passe la fenêtre question derrière pour pas pouvoir cliquer dessus
+          },
+          comLat = document.getElementById('comLat')
+          ;
+  
+      for (i=0, n=clics.length; i<n; i++) {                       // On 'prépare à l'écoute' toutes les fenêtres de la page
+          clics[i].addEventListener('click',function(e){
+  
+              if (e.target.className === 'reponseV') {                    // On récupère true si cliqué sur V, false si cliqué sur F
+                  reponse.init(e.target.parentNode.parentNode,true);      // et un caractère vide si cliqué ailleurs dans la fenêtre
+              } else if (e.target.className === 'reponseF') {
+                  reponse.init(e.target.parentNode.parentNode,false);
+              } else {
+                  reponse.init(e.target.parentNode.parentNode,'erreur');
+              }
+  
+  
+              if (e.target.className === 'reponseV') {                    // On récupère true si cliqué sur V, false si cliqué sur F
+                  var larep = "Vrai";      // et un caractère vide si cliqué ailleurs dans la fenêtre
+              } else if (e.target.className === 'reponseF') {
+                var larep = "Faux";
+              } else {
+                var larep = "Erreur";
+              }
+          
+              idFenetre = reponse.fenetre.id ;
+          
+              if (reponse.result != 'erreur') {                                  // On ne modifie le CSS que si l'utilisateur a répondu
+                  infogra = document.querySelector("#" + idFenetre + " .infographie") ;   // On enregistre les trois enfants de la fenêtre mère
+                  question = document.querySelector("#" + idFenetre + " .fenetreQuestion") ;      // On récupère l'élément question
+                  //comm = document.querySelector("#"+ idFenetre + " .commentaire") ;       // On récupère le commentaire de réponse
+                  noQuestion = idFenetre.charAt(5) - 1;
+          //        (reponse.result) ? comm.innerHTML = textes.vrai[noQuestion]: comm.innerHTML = textes.faux[noQuestion] ; 
+                  setTimeout(action,200) ;
+                  alert(larep)
+              }
+          });
+      }
+  })();
+  </script>
+  
