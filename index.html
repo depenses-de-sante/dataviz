@@ -765,10 +765,9 @@
     
 					<div style="color:rgb(60, 8, 73)";>
 						<p> En moyenne, les médicaments les plus chers sont mieux remboursés par la Sécurité Sociale. Il s'agit souvent de médicaments permettant de soigner des affections graves ou de longue durée, ce qui explique leurs taux de remboursement élevés.
-						Cependant, moins de 3% des médicaments vendus en France coûtent plus de 50 € alors que plus de 60% d'entre eux coûtent moins de 5 € !
+						Cependant, moins de 3% des médicaments vendus en France coûtent plus de 50 € alors que plus de 68% d'entre eux coûtent moins de 5 € !
 						Ainsi, les médicaments les moins chers et les plus chers (si l'on fixe ce seuil à 50 €) pèsent à part égale dans les dépenses de remboursement de médicaments de la Sécurité Sociale.
-            <br>Les médicaments les plus chers sont peu consommés, mais du fait de leur prix élevé et du taux de remboursement élevé, ces médicamants pèsent lourd dans les dépense de remboursement. Cependant les médicaments les moins chers ne pèsent pas moins car ils sont consommés en très grand nombre.  
-						<br> </p>
+						<br></p>
 					</div>		
           <br><br>
 		
@@ -882,7 +881,7 @@
       <div class="row"> 
         <div class="col-md-6 col-sm-6">
           <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
-            <p>BLI BLI</p>
+            <p>[remarque psychiatre ?]</p>
             </div>
           </div>
 		  
@@ -1656,9 +1655,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		name: "remboursé",
 		yValueFormatString: "0.##\" millions\"",
 		dataPoints: [
-			{ y: 1433.7,  label: "de 0 à 3 €" },
-			{ y: 1076.3,   label: "de 3 à 6 €" },
-			{ y: 1661.2,  label: "de 6 à 10 €" },
+			{ y: 2097.65,  label: "de 0 à 5 €" },
+			{ y: 2073.62,  label: "de 5 à 10 €" },
 			{ y: 5198.4,  label: "de 10 à 50 €" },
 			{ y: 9221.6,  label: "plus de 50 €" }
 		]
@@ -1670,9 +1668,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			yValueFormatString: "0.##\" millions\"",
 			color: "#FA8072",
 			dataPoints: [
-				{ y: 819.8,  label: "de 0 à 3 €" },
-				{ y: 524.3,  label: "de 3 à 6 €" },
-				{ y: 569.1,  label: "de 6 à 10 €" },
+				{ y: 1176.4,  label: "de 0 à 5 €" },
+				{ y: 736.9,  label: "de 5 à 10 €" },
 				{ y: 1343.5,  label: "de 10 à 50 €" },
 				{ y: 572.9,  label: "plus de 50 €" }
 		]
@@ -1698,9 +1695,8 @@ function createPareto(){
 			name: "nb boîte",
 			showInLegend: true,
 			dataPoints: [
-				{ y: 57.58,  label: "de 0 à 3 €" },
-				{ y: 15.59,  label: "de 3 à 6 €" },
-				{ y: 12.61,  label: "de 6 à 10 €" },
+				{ y: 68.70,  label: "de 0 à 5 €" },
+				{ y: 17.08,  label: "de 5 à 10 €" },
 				{ y: 11.92,  label: "de 10 à 50 €" },
 				{ y: 2.30,  label: "plus de 50 €" }
 	]
@@ -1730,7 +1726,7 @@ function createPareto(){
 	console.log(dps);
 	chart.addTo("data", {type:"splineArea", name: "% boîtes",showInLegend: true, color: "rgba(40,175,101,0.6)", axisYType: "secondary", yValueFormatString: "0.##\" %\"", indexLabel: "{y}", indexLabelFontColor: "rgba(40,175,101,0.6)", dataPoints: dps});
 	chart.axisY[0].set("maximum", yTotal, false);
-	chart.axisY2[0].set("maximum", 65, false );
+	chart.axisY2[0].set("maximum", 70, false );
 	chart.axisY2[0].set("interval", 20 );
 }
 
@@ -1771,7 +1767,7 @@ var chart = new CanvasJS.Chart("graphe14", {
 		showInLegend: true,
 		yValueFormatString: "##,## %",      
 		name: "Femmes",
-		color :'HotPink',
+		color :'#FABFF9',
 		dataPoints: [
 			{ y: 11.75,  label: "de 0 à 20 ans" },
 			{ y: 42.71,  label: "de 20 à 60 ans" },
@@ -1782,7 +1778,7 @@ var chart = new CanvasJS.Chart("graphe14", {
 		type: "splineArea",
 		showInLegend: true,
 		name: "Hommes",
-		color : 'DodgerBlue',
+		color : '#9DCEF5',
 		yValueFormatString: "#,## %",
 		dataPoints: [
 			{ y: 0.36,  label: "de 0 à 20 ans" },
@@ -2195,7 +2191,7 @@ anychart.onDocumentReady(function() {
   // create first series with mapped data
   series = chart.bar(seriesData_1);
   series.name('Femmes')
-    .color('HotPink');
+    .color("#FABFF9");
   series.tooltip()
     .position('right')
     .anchor('left-center');
@@ -2203,7 +2199,7 @@ anychart.onDocumentReady(function() {
   // create second series with mapped data
   series = chart.bar(seriesData_2);
   series.name('Hommes')
-	.color('DodgerBlue');
+	.color("#9DCEF5");
   series.tooltip()
     .position('left')
     .anchor('right-center');
