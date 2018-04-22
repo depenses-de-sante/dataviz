@@ -477,7 +477,7 @@
 					
 					
 					
-
+<!--
   <div class="section-header">          
 		  <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.2s"> <br> </p>
           <hr class="lines wow zoomIn" data-wow-delay="0.2s">
@@ -485,8 +485,9 @@
           <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.2s"> <span style="font-size:20px; font-weight:bold; color:#005DA8"> Focus : les vaccins les plus consommés en France </span></h3>
   </div>
 
+
 <div id="quizz2" class="fenetre">
-      <!--    <div class="commentaire"></div> -->		  
+      <!--    <div class="commentaire"></div> 	  
 <div class="infographie" >
       <div class="container">
           <div class="row">     
@@ -494,7 +495,7 @@
 	
               <div>
                 <div>
-                  	<!-- graphe 13 interactif-->
+                  	<!-- graphe 13 interactif
 					<div id="graphe13" style="height: 370px; width: 100%;"></div>
                 </div>
 				</div>
@@ -505,7 +506,7 @@
             <div class="col-lg-6 col-sm-6 col-xs-12">
 			
               <div>
-				<!-- <h3>titre</h3> -->
+				<!-- <h3>titre</h3> 
                 <div>
                   <p> <br> <br> <br><br>
                   Les vaccins les plus consommés en France sont les vaccins antigrippaux, bien devant les autres vaccins. Cela est dû à la fréquence à laquelle ces vaccins sont consommés.
@@ -528,7 +529,7 @@
 	  
   </div>
 
-</div>			 
+</div> -->			 
 
 		
 		
@@ -801,7 +802,7 @@
 <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
     <h3 class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.2s"><center> <span style="color:BLACK; font-size:18px; font-weight:bold">  Effet prix ou effet volume ? </span> </center> </h3>
     
-					<div>
+					<div style="color:black">
 						<p> En moyenne, les médicaments les plus chers sont mieux remboursés par la Sécurité Sociale. Il s'agit souvent de médicaments permettant de soigner des affections graves ou de longue durée, ce qui explique leurs taux de remboursement élevés.
 						Cependant, moins de <strong>3%</strong> des médicaments vendus en France coûtent plus de 50 € alors que plus de <strong>68%</strong> d'entre eux coûtent moins de 5 € !
 						<br>
@@ -2569,48 +2570,48 @@ var makeBarWithBar = function (gauge, radius, i, width, without_stroke) {
     return gauge.bar(i)
 };
 
-anychart.onDocumentReady(function () {
-    var gauge = anychart.gauges.circular();
-    gauge.data(dataSet);
-    gauge.fill('#fff')
-            .stroke(null)
-            .padding(0)
-            .margin(100)
-            .startAngle(0)
-            .sweepAngle(270);
+<!-- anychart.onDocumentReady(function () {
+<!--    var gauge = anychart.gauges.circular();
+<!--    gauge.data(dataSet);
+<!--    gauge.fill('#fff')
+<!--            .stroke(null)
+<!--            .padding(0)
+<!--            .margin(100)
+<!--            .startAngle(0)
+<!--            .sweepAngle(270);
 
-    var axis = gauge.axis().radius(100).width(1).fill(null);
-    axis.scale()
-            .minimum(0)
-            .maximum(10000)
-            .ticks({interval: 1})
-            .minorTicks({interval: 1});
-    axis.labels().enabled(false);
-    axis.ticks().enabled(false);
-    axis.minorTicks().enabled(false);
-    makeBarWithBar(gauge, 100, 0, 17, true);
-    makeBarWithBar(gauge, 80, 1, 17, true);
-    makeBarWithBar(gauge, 60, 2, 17, true);
-    makeBarWithBar(gauge, 40, 3, 17, true);
-    makeBarWithBar(gauge, 20, 4, 17, true);
+<!--    var axis = gauge.axis().radius(100).width(1).fill(null);
+<!--    axis.scale()
+<!--            .minimum(0)
+<!--            .maximum(10000)
+<!--            .ticks({interval: 1})
+<!--            .minorTicks({interval: 1});
+<!--    axis.labels().enabled(false);
+<!--    axis.ticks().enabled(false);
+<!--    axis.minorTicks().enabled(false);
+<!--    makeBarWithBar(gauge, 100, 0, 17, true);
+<!--    makeBarWithBar(gauge, 80, 1, 17, true);
+<!--    makeBarWithBar(gauge, 60, 2, 17, true);
+<!--    makeBarWithBar(gauge, 40, 3, 17, true);
+<!--    makeBarWithBar(gauge, 20, 4, 17, true);
 
-    gauge.margin(50);
-    gauge.title().text('Top 5 des vaccins les plus vendus ' +
-            '<br/><span style="color:#929292; font-size: 12px;">(en milliers)</span>').useHtml(true);
-    gauge.title()
-            .enabled(true)
-            .hAlign('center')
-            .padding(0)
-            .margin([0, 0, 20, 0]);
+<!--    gauge.margin(50);
+<!--    gauge.title().text('Top 5 des vaccins les plus vendus ' +
+<!--            '<br/><span style="color:#929292; font-size: 12px;">(en milliers)</span>').useHtml(true);
+<!--    gauge.title()
+<!--            .enabled(true)
+<!--            .hAlign('center')
+<!--            .padding(0)
+ <!--           .margin([0, 0, 20, 0]);
 			
 			
 			
-	gauge.tooltip()
-		.format('{%Value}');
+<!--	gauge.tooltip()
+<!--		.format('{%Value}');
 
-    gauge.container('graphe13');
-    gauge.draw();
-});
+<!--    gauge.container('graphe13');
+ <!--   gauge.draw();
+<!--  }); 
 </script>
 
 
